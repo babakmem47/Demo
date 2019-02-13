@@ -9,27 +9,84 @@
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-home"></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> نقاط <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">ستاد و ادارات</a></li>
+                            <li><a href="#">سرپرستی مناطق</a></li>
+                            <li><a href="#">شعب</a></li>
+                            <li><a href="#">باجه ها</a></li>
+                            <li><a href="#">دستگاه های خودپرداز ATM</a></li>
+                            <li><a href="#">سایت فناوری</a></li>
+                            <li><a href="#">حقانی</a></li>
+                            <li><a href="#">Something else here</a></li>
+                            <li><a href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> خطوط <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">مخابرات</a></li>
+                            <li><a href="#">وایمکس / TDLTE</a></li>
+                            <li><a href="#">ماهواره</a></li>
+                            <li><a href="#">فیبر تاریک</a></li>
+                            <li><a href="#">وایرلس OutDoor</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">آی پی <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">تخصیص آی پی</a></li>
+                            <li><a href="#">تعریف رنج جدید</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">کلیشه کانفیگ <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">روتر</a></li>
+                            <li><a href="#">سوئیچ</a></li>
+                            <li><a href="#">فایروال</a></li>
+                            <li><a href="#">سایبروم</a></li>
+                            <li><a href="#"></a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">نقشه شبکه <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">سایت فناوری</a></li>
+                            <li><a href="#">سایت حقانی</a></li>
+                            <li><a href="#">ساختمان نگین</a></li>
+                            <li><a href="#">ادارات</a></li>
+                            <li><a href="#">سرپرستی مناطق</a></li>
+                            <li><a href="#">شعب</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">Separated link</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">One more separated link</a></li>
+                        </ul>
+                    </li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
         </div>
-    </div>
-    <div class="container body-content">
+    </nav>
+    <div class="container-fluid body-content">
         @RenderBody()
         <hr />
         <footer>
@@ -37,8 +94,7 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/lib")
     @RenderSection("scripts", required: false)
 </body>
 </html>

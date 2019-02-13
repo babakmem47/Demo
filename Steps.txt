@@ -3,4 +3,46 @@
 	- Change BundleConfig bootstrap: "~/Content/bootstrap.css", -> "~/Content/bootstrap-united.css",
 	- Clear index page. 
 	- Download IranSansWeb.woff fonts(5) from https://changal.com/assets/fonts/iran-sans/woff/. Put it into Font folder.
-2. bootstrap-united+IranSansWeb.woff
+2. Add bootstrap-united + Download IranSansWeb.woff
+	- Layout.cshtml:
+		Consolidate jquery and bootstrap.js into lib
+	- BundleConfig:
+		Complete consolidating jQuery and Bootstrap.js:
+				bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+								"~/Scripts/jquery-{version}.js",
+								"~/Scripts/bootstrap.js",
+								"~/Scripts/respond.js"));
+	- Layout.cshtml:
+		Change 'div to 'nav' in <div class="navbar navbar-inverse navbar-fixed-top"> 
+		Change 'container' to 'container-fluid' in <div class="container"> in 2 place in this page
+		Delete @Html.ActionLink("Application name", ... and replace it with:
+				<a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-home"></span></a>
+		Copy NavBar Example for DropDown from https://getbootstrap.com/docs/3.3/examples/navbar/:
+				<li class="dropdown">
+				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+				  <ul class="dropdown-menu">
+					<li><a href="#">Action</a></li>
+					<li><a href="#">Another action</a></li>
+					<li><a href="#">Something else here</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#">Separated link</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#">One more separated link</a></li>
+				  </ul>
+				</li>
+		Paste it instead of <li>@Html.ActionLink("Home", "Index", "Home")</li>
+		Farsination of Dropdowns
+	- Add IranSansWeb.woff font:
+		Site.css:
+					.navbar-inverse {
+						font-family: IranSansWeb;
+					}
+					.navbar-inverse navbar-fixed-top {
+						direction: rtl;
+					}
+					@font-face {
+						font-family: IranSansWeb;
+						src: url(/fonts/IRANSansWeb.woff);
+					}
+	** Problem: navbar dropdown not collapsing!
+3. DropDowns in Layout.cshtml + Add IRANSansWeb.woff to navbar
