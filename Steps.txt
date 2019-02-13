@@ -1,0 +1,6 @@
+1. Create this steps.txt
+	- Add bootstrap-united(modified) from LNDCodefirst to Content folder.
+	- Change BundleConfig bootstrap: "~/Content/bootstrap.css", -> "~/Content/bootstrap-united.css",
+	- Clear index page. 
+	- Download IranSansWeb.woff fonts(5) from https://changal.com/assets/fonts/iran-sans/woff/. Put it into Font folder.
+2. bootstrap-united+IranSansWeb.woff
