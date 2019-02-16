@@ -67,3 +67,6 @@
 					margin: 2px -46px 0;
 				}
  4. Improving the look and feel of NavBar
+	
+	- Separate ApplicationDbContext.cs and ApplicationUser.cs from IdentityModels.cs
+
