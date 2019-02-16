@@ -69,4 +69,11 @@
  4. Improving the look and feel of NavBar
 	
 	- Separate ApplicationDbContext.cs and ApplicationUser.cs from IdentityModels.cs
-
+	- Execute Enable-Migration
+	- Execute Add-Migration InitialModel
+	- Change Web.config to point to LNDServer:
+    <add name="DefaultConnection" connectionString="Data Source=LNDSRVBK\LND_INSTANCE;Initial Catalog=Demo;Integrated Security=False;User Id=sa;Password=Qwe123;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
+	- Execute Add-Migration InitialModel
+	- Execute Update-Database
+5. Enable Migration 
+	
