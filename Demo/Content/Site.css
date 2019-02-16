@@ -37,3 +37,19 @@ textarea {
 .navbar-inverse navbar-fixed-top {
     direction: rtl;
 }
+
+.navbar-nav > li  {
+    padding-left: 20px;
+}
+
+.navbar-nav > li > a {
+    font-size: 14px;
+}
+
+.navbar-right {
+    float: left !important;
+}
+
+.dropdown-menu {
+    margin: 2px -45px 0;
+}

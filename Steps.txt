@@ -1,4 +1,4 @@
-1. Create this steps.txt
+﻿1. Create this steps.txt
 	- Add bootstrap-united(modified) from LNDCodefirst to Content folder.
 	- Change BundleConfig bootstrap: "~/Content/bootstrap.css", -> "~/Content/bootstrap-united.css",
 	- Clear index page. 
@@ -8,7 +8,7 @@
 		Consolidate jquery and bootstrap.js into lib
 	- BundleConfig:
 		Complete consolidating jQuery and Bootstrap.js:
-				bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
+				bundles.Add(new ScriptBundle("~/bundles/jquery").Include(			// Mistake: make it ~/bundles/lib
 								"~/Scripts/jquery-{version}.js",
 								"~/Scripts/bootstrap.js",
 								"~/Scripts/respond.js"));
@@ -46,3 +46,24 @@
 					}
 	** Problem: navbar dropdown not collapsing!
 3. DropDowns in Layout.cshtml + Add IRANSansWeb.woff to navbar
+	## Solution: The cause of this problem is I didn't replace 'jquery' with 'lib' in BundleConfig after consolidating!
+
+	// Move ورود to the left of navbar:
+				.navbar-right {
+					float: left !important;
+				}
+
+	// Make DropDowns in navbar closer to each other:
+				.navbar-nav > li  {
+					padding-left: 20px;
+				}
+
+	// Make font size of each dropdown smaller:
+				.navbar-nav > li > a {
+					font-size: 14px;
+				}
+	// Move the menu below each DropDown to the left:
+				.dropdown-menu {
+					margin: 2px -46px 0;
+				}
+ 4. Improving the look and feel of NavBar
