@@ -76,4 +76,113 @@
 	- Execute Add-Migration InitialModel
 	- Execute Update-Database
 5. Enable Migration 
+
+	- Create IpRange and Setad class
+		public class IpRange
+		{
+			public int Id { get; set; }
+
+			public string Range { get; set; }
+
+			public string Mask { get; set; }
+
+			public ICollection<Setad> Setads { get; set; }
+		}
+
+		public class Setad
+		{
+			public int Id { get; set; }
+
+			public string Name { get; set; }
+
+			public string Shakhes { get; set; }
+
+			public bool IsModiriatShoab { get; set; }
+
+			public string Address { get; set; }
+
+			public IpRange IpRange { get; set; }
+
+			public int IpRangeId { get; set; }
+		}
+
+	- Add IpRange and Setad DbSet<> to ADBC:
+		 public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
+		 {
+			public DbSet<IpRange> IpRanges { get; set; }
+			public DbSet<Setad> Setads { get; set; }
+			.
+			.
+			.
 	
+
+	- Add 'EntityConfigurations' folder in Solution Explorer to put Fluent APIs in it
+	- Add 'IpRangeConfiguration.cs' and SetadConfiguration.cs and add Fluent APIs to it:
+		public class IpRangeConfiguration : EntityTypeConfiguration<IpRange>
+		{
+			public IpRangeConfiguration()
+			{
+				HasKey(ip => ip.Id);
+
+				Property(ip => ip.Range)
+					.IsRequired()
+					.HasMaxLength(15)
+					.HasColumnAnnotation(
+						IndexAnnotation.AnnotationName,
+						new IndexAnnotation(new IndexAttribute { IsUnique = true })
+						);
+
+				Property(ip => ip.Mask)
+					.IsRequired()
+					.HasMaxLength(2).IsFixedLength();
+
+				// One-to-Many with Setad
+				HasMany(ip => ip.Setads)
+					.WithRequired(st => st.IpRange)
+					.HasForeignKey(st => st.IpRangeId)
+					.WillCascadeOnDelete(false);
+			}
+		}
+
+		public class SetadConfiguration : EntityTypeConfiguration<Setad>
+		{
+			public SetadConfiguration()
+			{
+				HasKey(st => st.Id);
+
+				Property(st => st.Name)
+					.IsRequired()
+					.HasMaxLength(50);
+
+				Property(st => st.Shakhes)
+					.HasMaxLength(4).IsFixedLength();
+
+				Property(st => st.IsModiriatShoab)
+					.IsRequired();
+
+				Property(st => st.Address)
+					.HasMaxLength(200);
+
+				// Many-to-One with IpRange
+				HasRequired(st => st.IpRange)
+					.WithMany(ip => ip.Setads);
+
+			}
+		}
+
+	- Create OnModelCreating method in ADBC:
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+	- Add Definition of IpRangeConfiguration.cs and SetadConfiguration.cs to onModelCreating method of ADBC
+		protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Configurations.Add(new IpRangeConfiguration());
+            modelBuilder.Configurations.Add(new SetadConfiguration());
+
+            base.OnModelCreating(modelBuilder);
+        }
+
+- Add-Migration AddIpRangeAndSetadClassWithFluentApi
+- Update-Database.

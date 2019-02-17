@@ -161,18 +161,26 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="EntityConfigurations\IpRangeConfiguration.cs" />
+    <Compile Include="EntityConfigurations\SetadConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201902161207323_InitialModel.cs" />
-    <Compile Include="Migrations\201902161207323_InitialModel.Designer.cs">
-      <DependentUpon>201902161207323_InitialModel.cs</DependentUpon>
+    <Compile Include="Migrations\201902170630394_InitialModel.cs" />
+    <Compile Include="Migrations\201902170630394_InitialModel.Designer.cs">
+      <DependentUpon>201902170630394_InitialModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902170631304_AddIpRangeAndSetadClassWithFluentApi.cs" />
+    <Compile Include="Migrations\201902170631304_AddIpRangeAndSetadClassWithFluentApi.Designer.cs">
+      <DependentUpon>201902170631304_AddIpRangeAndSetadClassWithFluentApi.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\IpRange.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Setad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -250,8 +258,11 @@
     <None Include="Project_Readme.html" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201902161207323_InitialModel.resx">
-      <DependentUpon>201902161207323_InitialModel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201902170630394_InitialModel.resx">
+      <DependentUpon>201902170630394_InitialModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902170631304_AddIpRangeAndSetadClassWithFluentApi.resx">
+      <DependentUpon>201902170631304_AddIpRangeAndSetadClassWithFluentApi.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

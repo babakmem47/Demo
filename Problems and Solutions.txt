@@ -1,0 +1,11 @@
+** Problem: navbar dropdown not collapsing!
+
+## Solution: The cause of this problem is I didn't replace 'jquery' with 'lib' in BundleConfig after consolidating!
+
+
+** Problem: CascadeDelete:true not change to false after add-migration even when I set .WillCascadeOnDelete(false);   
+	// I notice that other annotation like Maxlength or nullable: false for string are not apply 
+	to configuration after execute Add-Migration -Force
+
+## Solution: Forget to Add Definition of IpRangeConfiguration.cs and SetadConfiguration.cs to onModelCreating 
+method of ADBC

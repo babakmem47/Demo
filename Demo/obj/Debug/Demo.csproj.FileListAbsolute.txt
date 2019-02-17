@@ -110,3 +110,4 @@ D:\Projects\Github\Demo\Demo\obj\Debug\Demo.dll
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.pdb
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.InitialModel.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.csproj.GenerateResource.Cache
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddIpRangeAndSetadClassWithFluentApi.resources
