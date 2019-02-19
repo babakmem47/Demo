@@ -72,7 +72,7 @@
 	- Execute Enable-Migration
 	- Execute Add-Migration InitialModel
 	- Change Web.config to point to LNDServer:
-    <add name="DefaultConnection" connectionString="Data Source=LNDSRVBK\LND_INSTANCE;Initial Catalog=Demo;Integrated Security=False;User Id=sa;Password=Qwe123;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
+	<add name="DefaultConnection" connectionString="Data Source=LNDSRVBK\LND_INSTANCE;Initial Catalog=Demo;Integrated Security=False;User Id=sa;Password=Qwe123;MultipleActiveResultSets=True" providerName="System.Data.SqlClient" />
 	- Execute Add-Migration InitialModel
 	- Execute Update-Database
 5. Enable Migration 
@@ -172,17 +172,17 @@
 
 	- Create OnModelCreating method in ADBC:
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            base.OnModelCreating(modelBuilder);
-        }
+		{
+			base.OnModelCreating(modelBuilder);
+		}
 	- Add Definition of IpRangeConfiguration.cs and SetadConfiguration.cs to onModelCreating method of ADBC
 		protected override void OnModelCreating(DbModelBuilder modelBuilder)
-        {
-            modelBuilder.Configurations.Add(new IpRangeConfiguration());
-            modelBuilder.Configurations.Add(new SetadConfiguration());
+		{
+			modelBuilder.Configurations.Add(new IpRangeConfiguration());
+			modelBuilder.Configurations.Add(new SetadConfiguration());
 
-            base.OnModelCreating(modelBuilder);
-        }
+			base.OnModelCreating(modelBuilder);
+		}
 
 	- Add-Migration AddIpRangeAndSetadClassWithFluentApi
 	- Update-Database.
@@ -192,8 +192,61 @@
 		public string Email { get; set; }
 	- Define FluentAPI:
 		Property(st => st.Email)
-            .IsOptional()
-            .HasMaxLength(30);
+			.IsOptional()
+			.HasMaxLength(30);
 	- PM> Add-Migration AddEmailToSetad
 	- PM> Update-Database
 7. Add Email Field to Setad
+
+	- Add Provice class:
+		public class Province
+		{
+			public int Id { get; set; }
+
+			public string ProvinceName { get; set; }
+
+			public byte Octet3 { get; set; }
+
+			public string CityCenter { get; set; }
+
+			public string PreTelCode { get; set; }
+
+			public Setad Setad { get; set; }
+
+			public int? SetadId { get; set; }
+		}
+
+	- Add Corresponding FluentAPI:
+		public class ProvinceConfiguration : EntityTypeConfiguration<Province>
+		{
+			public ProvinceConfiguration()
+			{
+				Property(pr => pr.ProvinceName)
+					.IsRequired()
+					.HasMaxLength(25);
+
+				Property(pr => pr.Octet3)
+					.IsOptional();
+
+				Property(pr => pr.CityCenter)
+					.IsRequired()
+					.HasMaxLength(25);
+
+				Property(pr => pr.PreTelCode)
+					.IsOptional()
+					.HasMaxLength(4);
+			
+				// One-To-(0..1) with Setad
+				HasOptional(pr => pr.Setad)
+					.WithRequired(st => st.Province);
+			}
+		}
+	- Add FluentAPI to SetadConfiguration:
+		HasOptional(st => st.Province)
+			.WithRequired(pr => pr.Setad);
+	- Add below to ADBC:
+        public DbSet<Province> Provinces { get; set; }
+		.
+			modelBuilder.Configurations.Add(new ProvinceConfiguration());
+		.
+	- Build + 

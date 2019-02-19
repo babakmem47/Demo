@@ -31,6 +31,11 @@ namespace Demo.EntityConfigurations
                 .WithMany(ip => ip.Setads)
                 .HasForeignKey(st => st.IpRangeId)
                 .WillCascadeOnDelete(false);
+
+            // (0..1)-to-One with Province
+            HasOptional(st => st.Province)
+                .WithRequired(pr => pr.Setad);
+
         }
     }
 }

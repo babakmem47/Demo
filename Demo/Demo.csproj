@@ -162,6 +162,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="EntityConfigurations\IpRangeConfiguration.cs" />
+    <Compile Include="EntityConfigurations\ProvinceConfiguration.cs" />
     <Compile Include="EntityConfigurations\SetadConfiguration.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -178,12 +179,17 @@
     <Compile Include="Migrations\201902190654417_AddEmailToSetad.Designer.cs">
       <DependentUpon>201902190654417_AddEmailToSetad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902191256438_AddProvinceClassWithFluentAPI.cs" />
+    <Compile Include="Migrations\201902191256438_AddProvinceClassWithFluentAPI.Designer.cs">
+      <DependentUpon>201902191256438_AddProvinceClassWithFluentAPI.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
     <Compile Include="Models\IpRange.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Province.cs" />
     <Compile Include="Models\Setad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -270,6 +276,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902190654417_AddEmailToSetad.resx">
       <DependentUpon>201902190654417_AddEmailToSetad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191256438_AddProvinceClassWithFluentAPI.resx">
+      <DependentUpon>201902191256438_AddProvinceClassWithFluentAPI.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

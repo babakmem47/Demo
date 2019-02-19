@@ -8,11 +8,13 @@ namespace Demo.Models
     {
         public DbSet<IpRange> IpRanges { get; set; }
         public DbSet<Setad> Setads { get; set; }
+        public DbSet<Province> Provinces { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new IpRangeConfiguration());
             modelBuilder.Configurations.Add(new SetadConfiguration());
+            modelBuilder.Configurations.Add(new ProvinceConfiguration());
 
             base.OnModelCreating(modelBuilder);
         }
