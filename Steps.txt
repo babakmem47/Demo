@@ -184,5 +184,16 @@
             base.OnModelCreating(modelBuilder);
         }
 
-- Add-Migration AddIpRangeAndSetadClassWithFluentApi
-- Update-Database.
+	- Add-Migration AddIpRangeAndSetadClassWithFluentApi
+	- Update-Database.
+6. Add IpRange.cs and Setad.cs with FluentApi.
+
+	- Add Email field to Setad.cs:
+		public string Email { get; set; }
+	- Define FluentAPI:
+		Property(st => st.Email)
+            .IsOptional()
+            .HasMaxLength(30);
+	- PM> Add-Migration AddEmailToSetad
+	- PM> Update-Database
+7. Add Email Field to Setad

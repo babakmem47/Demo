@@ -15,5 +15,8 @@
         public IpRange IpRange { get; set; }
 
         public int IpRangeId { get; set; }
+
+        public string Email { get; set; }
+
     }
 }

@@ -174,6 +174,10 @@
     <Compile Include="Migrations\201902170631304_AddIpRangeAndSetadClassWithFluentApi.Designer.cs">
       <DependentUpon>201902170631304_AddIpRangeAndSetadClassWithFluentApi.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902190654417_AddEmailToSetad.cs" />
+    <Compile Include="Migrations\201902190654417_AddEmailToSetad.Designer.cs">
+      <DependentUpon>201902190654417_AddEmailToSetad.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -263,6 +267,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902170631304_AddIpRangeAndSetadClassWithFluentApi.resx">
       <DependentUpon>201902170631304_AddIpRangeAndSetadClassWithFluentApi.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902190654417_AddEmailToSetad.resx">
+      <DependentUpon>201902190654417_AddEmailToSetad.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

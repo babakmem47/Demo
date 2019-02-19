@@ -22,6 +22,10 @@ namespace Demo.EntityConfigurations
             Property(st => st.Address)
                 .HasMaxLength(200);
 
+            Property(st => st.Email)
+                .IsOptional()
+                .HasMaxLength(30);
+
             // Many-to-One with IpRange
             HasRequired(st => st.IpRange)
                 .WithMany(ip => ip.Setads)
