@@ -1,4 +1,6 @@
 ﻿
+using System.Collections.Generic;
+
 namespace Demo.Models
 {
     public class Province
@@ -13,8 +15,6 @@ namespace Demo.Models
 
         public string PreTelCode { get; set; }
 
-        public Setad Setad { get; set; }
-
-        public int SetadId { get; set; }
+        public ICollection<Setad> Setads { get; set; }
     }
 }

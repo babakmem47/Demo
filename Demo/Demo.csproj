@@ -183,6 +183,22 @@
     <Compile Include="Migrations\201902191256438_AddProvinceClassWithFluentAPI.Designer.cs">
       <DependentUpon>201902191256438_AddProvinceClassWithFluentAPI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902191339486_MakeSetadIdNullable.cs" />
+    <Compile Include="Migrations\201902191339486_MakeSetadIdNullable.Designer.cs">
+      <DependentUpon>201902191339486_MakeSetadIdNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191415304_MakeIdentityTrueForProvineIdColumn.cs" />
+    <Compile Include="Migrations\201902191415304_MakeIdentityTrueForProvineIdColumn.Designer.cs">
+      <DependentUpon>201902191415304_MakeIdentityTrueForProvineIdColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191443425_ChangeRelationBetweenSetadAndProvinceToManyToOne.cs" />
+    <Compile Include="Migrations\201902191443425_ChangeRelationBetweenSetadAndProvinceToManyToOne.Designer.cs">
+      <DependentUpon>201902191443425_ChangeRelationBetweenSetadAndProvinceToManyToOne.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902191446195_PopulateProvinces.cs" />
+    <Compile Include="Migrations\201902191446195_PopulateProvinces.Designer.cs">
+      <DependentUpon>201902191446195_PopulateProvinces.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -279,6 +295,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902191256438_AddProvinceClassWithFluentAPI.resx">
       <DependentUpon>201902191256438_AddProvinceClassWithFluentAPI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191339486_MakeSetadIdNullable.resx">
+      <DependentUpon>201902191339486_MakeSetadIdNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191415304_MakeIdentityTrueForProvineIdColumn.resx">
+      <DependentUpon>201902191415304_MakeIdentityTrueForProvineIdColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191443425_ChangeRelationBetweenSetadAndProvinceToManyToOne.resx">
+      <DependentUpon>201902191443425_ChangeRelationBetweenSetadAndProvinceToManyToOne.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902191446195_PopulateProvinces.resx">
+      <DependentUpon>201902191446195_PopulateProvinces.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

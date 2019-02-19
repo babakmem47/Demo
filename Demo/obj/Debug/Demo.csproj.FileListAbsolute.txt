@@ -113,3 +113,7 @@ D:\Projects\Github\Demo\Demo\obj\Debug\Demo.csproj.GenerateResource.Cache
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddIpRangeAndSetadClassWithFluentApi.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddEmailToSetad.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddProvinceClassWithFluentAPI.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.MakeSetadIdNullable.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.MakeIdentityTrueForProvineIdColumn.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.ChangeRelationBetweenSetadAndProvinceToManyToOne.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateProvinces.resources

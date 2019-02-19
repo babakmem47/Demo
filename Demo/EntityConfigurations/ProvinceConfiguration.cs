@@ -1,4 +1,5 @@
 ﻿using Demo.Models;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 
 namespace Demo.EntityConfigurations
@@ -7,6 +8,11 @@ namespace Demo.EntityConfigurations
     {
         public ProvinceConfiguration()
         {
+            HasKey(pr => pr.Id);
+
+            Property(pr => pr.Id)
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+
             Property(pr => pr.ProvinceName)
                 .IsRequired()
                 .HasMaxLength(25);
@@ -22,9 +28,8 @@ namespace Demo.EntityConfigurations
                 .IsOptional()
                 .HasMaxLength(4);
 
-            // One-To-(0..1) with Setad                             // Do not define this(Definition in Setad 
-            //HasOptional(pr => pr.Setad)                           // is enough!) 
-            //    .WithOptionalPrincipal(st => st.Province);
+
+
         }
     }
 }

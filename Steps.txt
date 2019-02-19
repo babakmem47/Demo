@@ -249,4 +249,34 @@
 		.
 			modelBuilder.Configurations.Add(new ProvinceConfiguration());
 		.
-	- Build + 
+	- Build + Add-Migration AddProvinceClassWithFluentApi + Update-Database
+8. Add Province Class With FluentApi
+
+	- Populate Provinces:
+		PM> Add-Migration PopulateProvinces
+	** Cannot Populate Province
+	## Finally I change relation between Setad and Province to Many-To-One:
+		In Setad.cs:
+			public Province Province { get; set; }
+
+			public int? ProvinceId { get; set; }
+
+		In Province.cs:
+			public ICollection<Setad> Setads { get; set; }
+		
+		In SetadConfiguration: First Remove One-to-(0..1) relationship (see above)
+			
+			// Many-to-(0..1) with Province
+            HasOptional(st => st.Province)
+                .WithMany(pr => pr.Setads)
+                .HasForeignKey(st => st.ProvinceId)
+                .WillCascadeOnDelete(false);
+		
+		PM> Add-Migration PopulateProvinces
+		Insert SQL statement in this migration:
+		Sql(@"
+			INSERT [dbo].[Provinces] ([ProvinceName], [CityCenter], [PreTelCode], [Octet3]) VALUES (N'تهران', N'تهران', N'021', 0)
+			INSERT [dbo].[Provinces] ([ProvinceName], [CityCenter], [PreTelCode], [Octet3]) VALUES (N'قم', N'قم', N'025', 5)
+		");
+		PM> Update-Database
+9. Change relation between Setad and Province to Many-To-One and Populate Province from migration
