@@ -10,6 +10,8 @@ namespace Demo.Models
 
         public string Mask { get; set; }
 
+        public bool IsUnused { get; set; }
+
         public ICollection<Setad> Setads { get; set; }
     }
 }

@@ -120,3 +120,5 @@ D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateProvinces.resourc
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.ChangeIdentityToFalseForIdInProvice.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.RemoveOctet3FromProvince.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.RepopulateProvinceUsingManualId.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateIpRangeClassUsingSqlLoop.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddIsUnusedColumnToIpRange.resources

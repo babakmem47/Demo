@@ -312,3 +312,24 @@
 	PM> Update-Database
 10. Province: Clear rows + Make Id Column Manual(identity:false) + Remove Octet3 Column + Repopulate Rows.
 
+	We want to populate IpRanges class using loop in SQLServer:
+	- PM> Add-Migration PopulateIpRangeClassUsingSqlLoop
+	- Add SQL statements like below in new migration:
+		Sql(@"
+			DECLARE @count AS INT = 1
+			DECLARE @last AS INT = 35
+			DECLARE @ip AS NVARCHAR
+
+			WHILE(@count <= @last)
+			BEGIN
+				INSERT INTO IpRanges([Range],[Mask])
+				VALUES('172.16.'  + CAST(@count AS VARCHAR) + '.0', '24')
+				SET @count += 1
+			END
+		");	
+	We want to add a column name 'IsUnused' to IpRange in case if we decide to dot using a range of ip, set it to True;
+	- Add below prop in IpRange.cs:
+        public bool IsUnused { get; set; }
+
+	- Build + Add-Migration AddIsUnusedColumnToIpRange + Update-Database
+11. Add IsUnused property to IpRange(Logical delete)

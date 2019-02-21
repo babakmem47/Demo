@@ -211,6 +211,14 @@
     <Compile Include="Migrations\201902210853011_RepopulateProvinceUsingManualId.Designer.cs">
       <DependentUpon>201902210853011_RepopulateProvinceUsingManualId.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902211317325_PopulateIpRangeClassUsingSqlLoop.cs" />
+    <Compile Include="Migrations\201902211317325_PopulateIpRangeClassUsingSqlLoop.Designer.cs">
+      <DependentUpon>201902211317325_PopulateIpRangeClassUsingSqlLoop.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902211331156_AddIsUnusedColumnToIpRange.cs" />
+    <Compile Include="Migrations\201902211331156_AddIsUnusedColumnToIpRange.Designer.cs">
+      <DependentUpon>201902211331156_AddIsUnusedColumnToIpRange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -328,6 +336,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902210853011_RepopulateProvinceUsingManualId.resx">
       <DependentUpon>201902210853011_RepopulateProvinceUsingManualId.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902211317325_PopulateIpRangeClassUsingSqlLoop.resx">
+      <DependentUpon>201902211317325_PopulateIpRangeClassUsingSqlLoop.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902211331156_AddIsUnusedColumnToIpRange.resx">
+      <DependentUpon>201902211331156_AddIsUnusedColumnToIpRange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
