@@ -293,10 +293,10 @@
 	- PM> Update-Database
 	It is better to remove Octet3 column because it is not belong here. Instead we use this new manual Id.
 	- In Province.cs remove following line:
-        public byte Octet3 { get; set; }
+		public byte Octet3 { get; set; }
 	- In ProvinceConfiguration remove the following config because we no longer having Octet3:
 			Property(pr => pr.Octet3)
-                .IsOptional();
+				.IsOptional();
 	- Build + Add-Migration RemoveOctet3FromProvince + Update-Database
 	
 	Now we repopulate Province with below:
@@ -329,7 +329,7 @@
 		");	
 	We want to add a column name 'IsUnused' to IpRange in case if we decide to dot using a range of ip, set it to True;
 	- Add below prop in IpRange.cs:
-        public bool IsUnused { get; set; }
+		public bool IsUnused { get; set; }
 
 	- Build + Add-Migration AddIsUnusedColumnToIpRange + Update-Database
 11. Add IsUnused property to IpRange(Logical delete)

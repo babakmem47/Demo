@@ -67,3 +67,18 @@ INSERT [dbo].[Provinces] ([Id], [ProvinceName], [CityCenter], [PreTelCode]) VALU
 INSERT [dbo].[Provinces] ([Id], [ProvinceName], [CityCenter], [PreTelCode]) VALUES (35, N'کهکیلوئیه و بویراحمد', N'یاسوج', N'074')
 
             ");
+
+
+Sql(@"
+			DECLARE @count AS INT = 1
+			DECLARE @last AS INT = 35
+			DECLARE @ip AS NVARCHAR
+
+			WHILE(@count <= @last)
+			BEGIN
+				INSERT INTO IpRanges([Range],[Mask])
+				VALUES('172.16.'  + CAST(@count AS VARCHAR) + '.0', '24')
+				SET @count += 1
+			END
+");	
+
