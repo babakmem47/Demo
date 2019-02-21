@@ -245,7 +245,7 @@
 		HasOptional(st => st.Province)
 			.WithRequired(pr => pr.Setad);
 	- Add below to ADBC:
-        public DbSet<Province> Provinces { get; set; }
+		public DbSet<Province> Provinces { get; set; }
 		.
 			modelBuilder.Configurations.Add(new ProvinceConfiguration());
 		.
@@ -267,10 +267,10 @@
 		In SetadConfiguration: First Remove One-to-(0..1) relationship (see above)
 			
 			// Many-to-(0..1) with Province
-            HasOptional(st => st.Province)
-                .WithMany(pr => pr.Setads)
-                .HasForeignKey(st => st.ProvinceId)
-                .WillCascadeOnDelete(false);
+			HasOptional(st => st.Province)
+				.WithMany(pr => pr.Setads)
+				.HasForeignKey(st => st.ProvinceId)
+				.WillCascadeOnDelete(false);
 		
 		PM> Add-Migration PopulateProvinces
 		Insert SQL statement in this migration:
@@ -280,3 +280,35 @@
 		");
 		PM> Update-Database
 9. Change relation between Setad and Province to Many-To-One and Populate Province from migration
+
+	We decide to get Id of each province by ourself so :
+	- 1.in SQLServer execute below query to delete all rows in Provinces table.
+		DELETE  From Provinces
+	  
+	- Set Provice identity of Id to False for manually insert Id for each province:
+			Property(pr => pr.Id)
+				.HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
+	With above code, in SQLServer, Identity change to False after executing 2 below commands:
+	- PM> Add-Migration ChangeIdentityToFalseForIdInProvice
+	- PM> Update-Database
+	It is better to remove Octet3 column because it is not belong here. Instead we use this new manual Id.
+	- In Province.cs remove following line:
+        public byte Octet3 { get; set; }
+	- In ProvinceConfiguration remove the following config because we no longer having Octet3:
+			Property(pr => pr.Octet3)
+                .IsOptional();
+	- Build + Add-Migration RemoveOctet3FromProvince + Update-Database
+	
+	Now we repopulate Province with below:
+	- PM> Add-Migration RepopulateProvinceUsingManualId
+	Insert SQL statement in this migration:
+	Sql(@"
+		INSERT [dbo].[Provinces] ([Id], [ProvinceName], [CityCenter], [PreTelCode]) VALUES (4, N'تهران', N'تهران', N'021')
+		INSERT [dbo].[Provinces] ([Id], [ProvinceName], [CityCenter], [PreTelCode]) VALUES (5, N'قم', N'قم', N'025')
+		INSERT [dbo].[Provinces] ([Id], [ProvinceName], [CityCenter], [PreTelCode]) VALUES (6, N'یزد', N'یزد', N'035')
+		.
+		.
+	");
+	PM> Update-Database
+10. Province: Clear rows + Make Id Column Manual(identity:false) + Remove Octet3 Column + Repopulate Rows.
+

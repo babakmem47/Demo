@@ -11,14 +11,11 @@ namespace Demo.EntityConfigurations
             HasKey(pr => pr.Id);
 
             Property(pr => pr.Id)
-                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+                .HasDatabaseGeneratedOption(DatabaseGeneratedOption.None);
 
             Property(pr => pr.ProvinceName)
                 .IsRequired()
                 .HasMaxLength(25);
-
-            Property(pr => pr.Octet3)
-                .IsOptional();
 
             Property(pr => pr.CityCenter)
                 .IsRequired()
@@ -27,9 +24,6 @@ namespace Demo.EntityConfigurations
             Property(pr => pr.PreTelCode)
                 .IsOptional()
                 .HasMaxLength(4);
-
-
-
         }
     }
 }

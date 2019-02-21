@@ -199,6 +199,18 @@
     <Compile Include="Migrations\201902191446195_PopulateProvinces.Designer.cs">
       <DependentUpon>201902191446195_PopulateProvinces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902210841188_ChangeIdentityToFalseForIdInProvice.cs" />
+    <Compile Include="Migrations\201902210841188_ChangeIdentityToFalseForIdInProvice.Designer.cs">
+      <DependentUpon>201902210841188_ChangeIdentityToFalseForIdInProvice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902210852041_RemoveOctet3FromProvince.cs" />
+    <Compile Include="Migrations\201902210852041_RemoveOctet3FromProvince.Designer.cs">
+      <DependentUpon>201902210852041_RemoveOctet3FromProvince.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902210853011_RepopulateProvinceUsingManualId.cs" />
+    <Compile Include="Migrations\201902210853011_RepopulateProvinceUsingManualId.Designer.cs">
+      <DependentUpon>201902210853011_RepopulateProvinceUsingManualId.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -307,6 +319,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902191446195_PopulateProvinces.resx">
       <DependentUpon>201902191446195_PopulateProvinces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902210841188_ChangeIdentityToFalseForIdInProvice.resx">
+      <DependentUpon>201902210841188_ChangeIdentityToFalseForIdInProvice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902210852041_RemoveOctet3FromProvince.resx">
+      <DependentUpon>201902210852041_RemoveOctet3FromProvince.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902210853011_RepopulateProvinceUsingManualId.resx">
+      <DependentUpon>201902210853011_RepopulateProvinceUsingManualId.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

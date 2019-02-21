@@ -117,3 +117,6 @@ D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.MakeSetadIdNullable.resou
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.MakeIdentityTrueForProvineIdColumn.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.ChangeRelationBetweenSetadAndProvinceToManyToOne.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateProvinces.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.ChangeIdentityToFalseForIdInProvice.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.RemoveOctet3FromProvince.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.RepopulateProvinceUsingManualId.resources

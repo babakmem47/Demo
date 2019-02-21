@@ -9,8 +9,6 @@ namespace Demo.Models
 
         public string ProvinceName { get; set; }
 
-        public byte Octet3 { get; set; }
-
         public string CityCenter { get; set; }
 
         public string PreTelCode { get; set; }
