@@ -1,13 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Demo.Models;
+using Demo.ViewModels;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Demo.Controllers
 {
     public class SetadController : Controller
     {
+        private readonly ApplicationDbContext _context;
+
+        public SetadController()
+        {
+            _context = new ApplicationDbContext();
+        }
+
         // GET: Setad
         public ActionResult Index()
         {
@@ -16,7 +22,11 @@ namespace Demo.Controllers
 
         public ActionResult Create()
         {
-            return View();
+            var viewModel = new SetadFormViewModel
+            {
+                Provinces = _context.Provinces.ToList()
+            };
+            return View(viewModel);
         }
     }
 }

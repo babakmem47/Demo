@@ -16,7 +16,7 @@
 		Change 'div to 'nav' in <div class="navbar navbar-inverse navbar-fixed-top"> 
 		Change 'container' to 'container-fluid' in <div class="container"> in 2 place in this page
 		Delete @Html.ActionLink("Application name", ... and replace it with:
-				<a class="navbar-brand" href="#"> <span class="glyphicon glyphicon-home"></span></a>
+				<a class="navbar-brand" href="@Url.Action("Index", "Home")"> <span class="glyphicon glyphicon-home"></span></a>
 		Copy NavBar Example for DropDown from https://getbootstrap.com/docs/3.3/examples/navbar/:
 				<li class="dropdown">
 				  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
@@ -360,3 +360,67 @@
 	@Html.ActionLink("افزودن ستاد(اداره) جدید", "Create", "Setad", null, new { @class = "btn btn-primary btn-persian" })
 12. Down Method of Populate Migrations(remove rows) + SetadController + Create Action + link in 
 	NavBar + button in \Views\Setad\Index.cshtml
+
+
+	/// Add a Form with inputs and ... in \Views\Setad\Create.cshtml to capture a new Setad ///	
+	- Create a new folder called 'ViewModels' in Solution Explorer.
+	- Create a new class in it and name it 'SetadFormViewModel' and create the properties we need in it:
+		public class SetadFormViewModel
+		{
+			[Display(Name = "نام ")]
+			public string Name { get; set; }
+
+			[Display(Name = "شاخص")]
+			public string Shakhes { get; set; }
+
+			[Display(Name = "آدرس")]
+			public string Address { get; set; }
+
+			[Display(Name = "استان")]
+			public int? ProvinceId { get; set; }                    // use it in DropDownList
+
+			public IEnumerable<Province> Provinces { get; set; }   // created for showing the list in DropDown
+
+			public bool IsModiriatShoab { get; set; }
+
+			public int IpRangeId { get; set; }
+		
+			[Display(Name = "ایمیل")]
+			public string Email { get; set; }
+		}
+
+	- In Create.cshtml, detemine the model behind this view:
+		@model Demo.Models.SetadFormViewModel
+	
+	- Create <div class="row col-lg-.." to create vertical space for form
+	- Remove <footer> in _Layout.cshtml because it move to up!
+	- Create form like below in \Views\Setad\Create.cshtml:
+		<form>
+		<div class="form-group">
+			@Html.LabelFor(m => m.Name)
+			@Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "نام ستاد..." })
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.Shakhes)
+			@Html.TextBoxFor(m => m.Shakhes, new { @class = "form-control", placeholder = "چهار رقم..." })
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.ProvinceId)
+			@Html.DropDownListFor(m => m.ProvinceId, new SelectList(Model.Provinces, "Id", "ProvinceName"), new { @class = "form-control" })
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.Address)
+			@Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = "خیابان ..." })
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.Email)
+			@Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "ایمیل ستاد ..." })
+		</div>
+		<br/>
+		<br/>
+		<button type="submit" class="btn btn-primary">ذخیره</button>
+		</form>
+	
+	- remove "My ASP.NET Application" from the title of page:
+		In _Layout -> <title> -> remove it!
+13. Add a Form with inputs and DropDown and TextArea in \Views\Setad\Create.cshtml to capture a new Setad.

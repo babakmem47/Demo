@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="../Home/Index.cshtml"> <span class="glyphicon glyphicon-home"></span></a>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")"> <span class="glyphicon glyphicon-home"></span></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -82,10 +82,10 @@
     </nav>
     <div class="container-fluid body-content">
         @RenderBody()
-        <hr />
+        @*<hr />
         <footer>
             <p>&copy; @DateTime.Now.Year</p>
-        </footer>
+        </footer>*@
     </div>
 
     @Scripts.Render("~/bundles/lib")
