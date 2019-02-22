@@ -1,0 +1,10 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "title";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="persianHeader">ستاد و ادارات</h2>
+@*<button class="btn btn-primary btn-persian">افزودن ستاد(اداره) جدید</button>*@
+@Html.ActionLink("افزودن ستاد(اداره) جدید", "Create", "Setad", null, new { @class = "btn btn-primary btn-persian" })

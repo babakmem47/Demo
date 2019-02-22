@@ -333,3 +333,30 @@
 
 	- Build + Add-Migration AddIsUnusedColumnToIpRange + Update-Database
 11. Add IsUnused property to IpRange(Logical delete)
+
+	- forgotten step: Remove rows in Down Method of Populate Migrations:
+		In RepopulateProvince migration add below code into down method:
+			Sql("DELETE FROM Provinces WHERE Id IN (4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 
+			17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 31, 32, 33, 34, 35)");
+		
+	Create a simple form to allow us to capture a new Setad:
+	- Create Setad controller.
+	- Create index view for Index action for the future.
+	- Create a new action and name it Create()
+	- Create view for Create action(Alt+Enter)
+	- Add a link in navigation bar to navigate us to this view for adding new Setad.:
+		<li><a href="@Url.Action("Index", "Setad")">ستاد و ادارات</a></li>
+	
+	- Make the header of index page for Setad and Edarat persian and center align:
+		In Site.css:
+			.persianHeader {
+				text-align: center;
+				font-family: IranSansWeb;
+			}                          
+		In \Views\Setad\Index.cshtml:
+			<h2 class="persianHeader">ستاد و ادارات</h2>
+
+	- Add a button: "افزودن ستاد(اداره) جدید" to \Views\Setad\Index.cshtml
+	@Html.ActionLink("افزودن ستاد(اداره) جدید", "Create", "Setad", null, new { @class = "btn btn-primary btn-persian" })
+12. Down Method of Populate Migrations(remove rows) + SetadController + Create Action + link in 
+	NavBar + button in \Views\Setad\Index.cshtml

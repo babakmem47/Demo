@@ -161,6 +161,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\SetadController.cs" />
     <Compile Include="EntityConfigurations\IpRangeConfiguration.cs" />
     <Compile Include="EntityConfigurations\ProvinceConfiguration.cs" />
     <Compile Include="EntityConfigurations\SetadConfiguration.cs" />
@@ -292,6 +293,8 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Setad\Index.cshtml" />
+    <Content Include="Views\Setad\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

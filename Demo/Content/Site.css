@@ -51,5 +51,14 @@ textarea {
 }
 
 .dropdown-menu {
-    margin: 2px -45px 0;
+    margin: 2px -25px 0;
+}
+
+.persianHeader {
+    text-align: center;
+    font-family: IranSansWeb;
+}
+
+.btn-persian {
+    font-family: IranSansWeb;
 }
