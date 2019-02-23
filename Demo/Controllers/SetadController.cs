@@ -24,6 +24,7 @@ namespace Demo.Controllers
         {
             var viewModel = new SetadFormViewModel
             {
+                IpRanges = _context.IpRanges.ToList(),
                 Provinces = _context.Provinces.ToList()
             };
             return View(viewModel);

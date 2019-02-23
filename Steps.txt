@@ -424,3 +424,23 @@
 	- remove "My ASP.NET Application" from the title of page:
 		In _Layout -> <title> -> remove it!
 13. Add a Form with inputs and DropDown and TextArea in \Views\Setad\Create.cshtml to capture a new Setad.
+
+	/// Add IpRange DropDown to Form for picking Ip address range:
+	- Add below prop to SetadFormViewModel
+		public IEnumerable<IpRange> IpRanges { get; set; }
+
+	- Add annotation to IpRangeId		
+		[Display(Name = "رنج آی پی")]
+		public int IpRangeId { get; set; }
+
+	- Add below DropDown in \Views\Setad\Create.cshtml after Shakhes(make it choose nothing by default when loads):
+		<div class="form-group">
+			@Html.LabelFor(m => m.IpRangeId)
+			@Html.DropDownListFor(m => m.IpRangeId, new SelectList(Model.IpRanges, "Id", "Range"), "", new { @class = "form-control" })
+		</div>
+	
+	- Add below to viewModel in SetadController:
+		IpRanges = _context.IpRanges.ToList(),
+	
+	- Build
+14. Add IpRange DropDown to Form for picking Ip address range

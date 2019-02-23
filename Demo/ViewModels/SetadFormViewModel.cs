@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Demo.Models;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using Demo.Models;
 
 namespace Demo.ViewModels
 {
@@ -22,8 +22,11 @@ namespace Demo.ViewModels
 
         public bool IsModiriatShoab { get; set; }
 
+        [Display(Name = "رنج آی پی")]
         public int IpRangeId { get; set; }
-        
+
+        public IEnumerable<IpRange> IpRanges { get; set; }
+
         [Display(Name = "ایمیل")]
         public string Email { get; set; }
     }
