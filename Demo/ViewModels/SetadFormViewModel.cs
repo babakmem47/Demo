@@ -6,7 +6,7 @@ namespace Demo.ViewModels
 {
     public class SetadFormViewModel
     {
-        [Display(Name = "نام ")]
+        [Display(Name = "نام")]
         public string Name { get; set; }
 
         [Display(Name = "شاخص")]

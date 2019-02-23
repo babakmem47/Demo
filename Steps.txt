@@ -425,7 +425,7 @@
 		In _Layout -> <title> -> remove it!
 13. Add a Form with inputs and DropDown and TextArea in \Views\Setad\Create.cshtml to capture a new Setad.
 
-	/// Add IpRange DropDown to Form for picking Ip address range:
+	// Add IpRange DropDown to Form for picking Ip address range:
 	- Add below prop to SetadFormViewModel
 		public IEnumerable<IpRange> IpRanges { get; set; }
 
@@ -444,3 +444,32 @@
 	
 	- Build
 14. Add IpRange DropDown to Form for picking Ip address range
+
+	// Specify target action for the form(which action executed after sending data in the form to Controller)
+	- Replace <form> with @Html.BeginForm
+		@using (Html.BeginForm("Create", "Setad"))
+		{
+			// move html elements in form here
+		}
+	- Create 'Create' action with [HttpPost] attribute in Setad Controller:
+			[HttpPost]
+		public ActionResult Create(SetadFormViewModel viewModel)
+		{
+			var setad = new Setad
+			{
+				Name = viewModel.Name,
+				IpRangeId = viewModel.IpRangeId,
+				ProvinceId = viewModel.ProvinceId,
+				Shakhes = viewModel.Shakhes,
+				Email = viewModel.Email,
+				Address = viewModel.Address
+			};
+
+			_context.Setads.Add(setad);
+			_context.SaveChanges();
+
+			return RedirectToAction("Index", "Setad");
+		}
+
+	- We complete it in the future. For now it is OK.
+15. Implementing Save a setad without validation.
