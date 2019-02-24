@@ -473,3 +473,92 @@
 
 	- We complete it in the future. For now it is OK.
 15. Implementing Save a setad without validation.
+
+	// Add IsModiriatShoab to form
+	- Add below DropDown in \Views\Setad\Create.cshtml after Shakhes:
+		<div class="checkbox">
+			<label class="checkbox">
+				@Html.CheckBoxFor(m => m.IsModiriatShoab)
+				<span class="prevent-overlap">@Html.DisplayNameFor(m => m.IsModiriatShoab)</span>
+			</label>
+		</div>
+
+	- Add class .prevent-overlap in Site.css to prevent checkbox and lable overlapping:
+		.prevent-overlap {
+			padding-right: 20px;
+		}
+
+	- Add [Display(Name = "آیا مدیریت شعب است؟")] for public bool IsModiriatShoab { get; set; }
+
+	- Add script in Create.cshtml to show/hide Province when tick/untick the ModiriatShoab checkbox.
+		@section scripts
+		{
+			<script>
+				$(document).ready(function () {
+					$("#ProvinceId").attr('disabled', 'disabled');
+
+					$("#IsModiriatShoab").change(function() {
+						if ($(this).is(':checked'))
+							$("#ProvinceId").removeAttr('disabled');
+						else
+							$("#ProvinceId").attr('disabled', 'disabled');
+					});
+				});
+			</script>
+		}
+
+	- Make IsModiriatShoab optional in SetadConfiguration:
+			Property(st => st.IsModiriatShoab)
+						.IsOptional();
+	- PM> Add-Migration MakeIsModiriatShoabOptional
+	- PM> Update-Database
+
+	- PM> Add-Migration PopulateSetadWithModiriatShoabs
+	- Add these sql lines below to new migration::
+			Sql(@"
+				INSERT [dbo].[Setads] ([Name], [IpRangeId]) VALUES (N' غرب تهران (منطقه چهار)', 1)
+				INSERT [dbo].[Setads] ([Name], [IpRangeId]) VALUES (N'مرکزی تهران (منطقه دو)', 2)
+				.
+				.
+				INSERT [dbo].[Setads] ([Name], [IpRangeId]) VALUES (N'کهکیلوئیه و بویراحمد', 35)
+			");
+	- PM> Update-Database
+	- But I want to set IsModiriatShoab field for these 35 Province to True
+	- I made a mistake: Delete MakeIsModiriatShoabOptional migration in Solution Explorer, then I try to Create new 
+	  migration with the same name, but because I delete it after running Update-Database, It cause problem.
+	- Solve:
+		PM> Update-Database -TargetMigration 201902240602517_MakeIsModiriatShoabOptional
+		Add these sql lines below to new migration:	
+		Sql(@"
+			INSERT [dbo].[Setads] ([Name], [IpRangeId], [IsModiriatShoab]) VALUES (N' غرب تهران (منطقه چهار, 1)', 1, 1)
+			INSERT [dbo].[Setads] ([Name], [IpRangeId], [IsModiriatShoab]) VALUES (N'مرکزی تهران (منطقه دو, 1)', 2, 1)
+			.
+			.
+			INSERT [dbo].[Setads] ([Name], [IpRangeId], [IsModiriatShoab]) VALUES (N'کهکیلوئیه و بویراحمد', 35, 1)
+		");
+		PM> Update-Database.
+
+	- Notice that it is a typo in the first 4 line ',1' in parentheses.
+	- Tip from StackOverflow:
+		If you haven't used Update-Database you can just delete the migration file.
+		If you've run the update you should roll it back using Update-Database -TargetMigration "NameOfPreviousMigration" 
+		then delete the migration file.
+
+	- PM> Update-Database -TargetMigration 201902240602517_MakeIsModiriatShoabOptional
+	- In SQLServer:
+		Delete all rows in SQLServer Setads table:		DELETE FROM [dbo].[Setads]
+		Reset Identity field(Id):						DBCC CHECKIDENT ('Setads', RESEED, 0)
+	- Delete 201902240631460_PopulateSetadWithModiriatShoabs in Solution explorer
+	- PM> Add-Migration PopulateSetadWithModiriatShoabs
+	- Add these sql lines below to new migration:	
+		Sql(@"
+			INSERT [dbo].[Setads] ([Name], [IsModiriatShoab], [IpRangeId], [ProvinceId]) VALUES (N' غرب تهران (منطقه چهار)', 1, 1, 4)
+			INSERT [dbo].[Setads] ([Name], [IsModiriatShoab], [IpRangeId], [ProvinceId]) VALUES (N'مرکزی تهران (منطقه دو)', 1, 2, 4)
+			INSERT [dbo].[Setads] ([Name], [IsModiriatShoab], [IpRangeId], [ProvinceId]) VALUES (N'شرق تهران (منطقه سه)', 1, 3, 4)
+			.
+			.
+			INSERT [dbo].[Setads] ([Name], [IsModiriatShoab], [IpRangeId], [ProvinceId]) VALUES (N'کهکیلوئیه و بویراحمد', 1, 35, 35)
+		");
+	- PM> Update-Database.
+	- Move IsModiriatShoab to the end of form in Create.cshtml
+16. Add IsModiriatShoab to form + make int optional + Populate Setads table with ModiriatShoabs(1-35)

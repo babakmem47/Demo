@@ -17,7 +17,7 @@ namespace Demo.EntityConfigurations
                 .HasMaxLength(4).IsFixedLength();
 
             Property(st => st.IsModiriatShoab)
-                .IsRequired();
+                .IsOptional();
 
             Property(st => st.Address)
                 .HasMaxLength(200);

@@ -20,6 +20,7 @@ namespace Demo.ViewModels
 
         public IEnumerable<Province> Provinces { get; set; }   // created for showing the list in DropDown
 
+        [Display(Name = "آیا مدیریت شعب است؟")]
         public bool IsModiriatShoab { get; set; }
 
         [Display(Name = "رنج آی پی")]

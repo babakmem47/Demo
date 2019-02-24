@@ -122,3 +122,5 @@ D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.RemoveOctet3FromProvince.
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.RepopulateProvinceUsingManualId.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateIpRangeClassUsingSqlLoop.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddIsUnusedColumnToIpRange.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.MakeIsModiriatShoabOptional.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateSetadWithModiriatShoabs.resources

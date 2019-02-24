@@ -66,3 +66,7 @@ textarea {
 .btn-persian {
     font-family: IranSansWeb;
 }
+
+.prevent-overlap {
+    padding-right: 20px;
+}

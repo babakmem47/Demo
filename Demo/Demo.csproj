@@ -220,6 +220,14 @@
     <Compile Include="Migrations\201902211331156_AddIsUnusedColumnToIpRange.Designer.cs">
       <DependentUpon>201902211331156_AddIsUnusedColumnToIpRange.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902240602517_MakeIsModiriatShoabOptional.cs" />
+    <Compile Include="Migrations\201902240602517_MakeIsModiriatShoabOptional.Designer.cs">
+      <DependentUpon>201902240602517_MakeIsModiriatShoabOptional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201902240913012_PopulateSetadWithModiriatShoabs.cs" />
+    <Compile Include="Migrations\201902240913012_PopulateSetadWithModiriatShoabs.Designer.cs">
+      <DependentUpon>201902240913012_PopulateSetadWithModiriatShoabs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -346,6 +354,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902211331156_AddIsUnusedColumnToIpRange.resx">
       <DependentUpon>201902211331156_AddIsUnusedColumnToIpRange.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240602517_MakeIsModiriatShoabOptional.resx">
+      <DependentUpon>201902240602517_MakeIsModiriatShoabOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902240913012_PopulateSetadWithModiriatShoabs.resx">
+      <DependentUpon>201902240913012_PopulateSetadWithModiriatShoabs.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
