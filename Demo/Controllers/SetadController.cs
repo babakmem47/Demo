@@ -31,6 +31,7 @@ namespace Demo.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(SetadFormViewModel viewModel)
         {
 

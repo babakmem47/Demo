@@ -10,6 +10,7 @@
     <h3 class="persianHeaderAdd">افزودن ستاد جدید</h3>
     @using (Html.BeginForm("Create", "Setad"))
     {
+        @Html.AntiForgeryToken()
         <div class="form-group">
             @Html.LabelFor(m => m.Name)
             @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "نام ستاد..." })

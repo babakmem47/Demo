@@ -642,3 +642,12 @@
 	- Comment out @Scripts.Render("~/bundles/jqueryval") in Create.cshtml
 
 18. Enable Server side validation   
+
+	// Disable CSRF attack:
+	- in Create.cshtml -> in the beginning of form:
+		Html.AntiForgeryToken()
+
+	- Decorate SetadController Create Action with:
+		[ValidateAntiForgeryToken]
+
+19. Disable CSRF attack in Create.cshtml form.
