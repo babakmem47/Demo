@@ -70,3 +70,11 @@ textarea {
 .prevent-overlap {
     padding-right: 20px;
 }
+
+.field-validation-error {
+    color: red;
+}
+
+.input-validation-error {
+    border: solid 2px red;
+}

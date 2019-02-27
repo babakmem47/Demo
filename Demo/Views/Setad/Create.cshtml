@@ -13,34 +13,39 @@
         <div class="form-group">
             @Html.LabelFor(m => m.Name)
             @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "نام ستاد..." })
+            @Html.ValidationMessageFor(m => m.Name)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.IpRangeId)
             @Html.DropDownListFor(m => m.IpRangeId, new SelectList(Model.IpRanges, "Id", "Range"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(m => m.IpRangeId)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Shakhes)
             @Html.TextBoxFor(m => m.Shakhes, new { @class = "form-control", placeholder = "چهار رقم..." })
+            @Html.ValidationMessageFor(m => m.Shakhes)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Email)
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "ایمیل ستاد ..." })
+            @Html.ValidationMessageFor(m => m.Email)
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Address)
             @Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = "خیابان ..." })
+            @Html.ValidationMessageFor(m => m.Address)
         </div>
         <div class="checkbox">
             <label class="checkbox">
                 @Html.CheckBoxFor(m => m.IsModiriatShoab)
                 <span class="prevent-overlap">@Html.DisplayNameFor(m => m.IsModiriatShoab)</span>
+                @Html.ValidationMessageFor(m => m.IsModiriatShoab)
             </label>
         </div>
-        <div class="form-group">
+        <div id="provinceInForm" class="form-group">
             @Html.LabelFor(m => m.ProvinceId)
-            @Html.DropDownListFor(m => m.ProvinceId, new SelectList(Model.Provinces, "Id", "ProvinceName"), new
-           {
-               @class = "form-control"@*, disabled = "disabled"*@ })
+            @Html.DropDownListFor(m => m.ProvinceId, new SelectList(Model.Provinces, "Id", "ProvinceName"), new { @class = "form-control"@*, disabled = "disabled"*@ })
+            @Html.ValidationMessageFor(m => m.ProvinceId)
         </div>
         <br />
         <br />
@@ -50,17 +55,21 @@
 </div>
 <div class="row col-lg-1 col-xs-1"></div>
 
+
 @section scripts
 {
-    <script>
-        $(document).ready(function () {
-            $("#ProvinceId").attr('disabled', 'disabled');
+    @Scripts.Render("~/bundles/jqueryval")
 
+    <script>
+        var provinceDiv = document.getElementById("provinceInForm");
+        provinceDiv.style.display = "none";
+
+        $(document).ready(function () {
             $("#IsModiriatShoab").change(function() {
-                if ($(this).is(':checked'))
-                    $("#ProvinceId").removeAttr('disabled');
+                if (provinceDiv.style.display === "none")
+                    provinceDiv.style.display = "block";
                 else
-                    $("#ProvinceId").attr('disabled', 'disabled');
+                    provinceDiv.style.display = "none";
             });
         });
     </script>

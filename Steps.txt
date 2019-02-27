@@ -562,3 +562,64 @@
 	- PM> Update-Database.
 	- Move IsModiriatShoab to the end of form in Create.cshtml
 16. Add IsModiriatShoab to form + make int optional + Populate Setads table with ModiriatShoabs(1-35)
+
+	// Enabling Client Side Validation First //
+	- Check if it is enabled: Browser -> Inspect .. -> Network tab -> Clear -> Click submit button
+	- In Create.cshtml, Add @Scripts.Render("~/bundles/jqueryval") into the first line of @section scripts:
+		@section scripts
+		{
+			@Scripts.Render("~/bundles/jqueryval")
+
+			<script>
+				$(document).ready(function () {
+				.
+				.
+				.
+		}
+
+	- Add below to Name field in SetadFormViewModel:
+		[Required(ErrorMessage = "پر کردن فیلد نام اجباری است")]
+
+	**	Problem: The message above not showing even submit button prevent page from proceed.
+		It seems that client side validation working, because Inspect -> R-click on Name input ->
+		data-val-required="پر کردن فیلد نام اجباری است" but it does not display on the page.
+	
+	##	Forgot to add below code in Create.cshtml:
+			@Html.ValidationMessageFor(m => m.Name)
+	
+	- Add ValidationMessageFor for all elements in form in Create.cshtml.
+
+	// Make validation error RED //
+	- Make the error message text red:
+		.field-validation-error {
+			color: red;
+		}
+		
+	- Make border of the field with error red:
+		.input-validation-error {
+			border: solid 2px red;
+		}
+
+	// Make Shakhes field accepts only digits and have fixed length = 4
+		[StringLength(4, ErrorMessage = "طول فیلد حداکثر چهار رقم")]
+		[Range(1, 9999, ErrorMessage = "مقدار غیر مجاز می باشد")]
+		
+	// Make Email field accept only email
+		[EmailAddress(ErrorMessage = "آدرس ایمیل صحیح نیست")]		
+
+	// toggle Province:
+	<script>
+		var provinceDiv = document.getElementById("provinceInForm");
+		provinceDiv.style.display = "none";
+
+		$(document).ready(function () {
+			$("#IsModiriatShoab").change(function() {
+				if (provinceDiv.style.display === "none")
+					provinceDiv.style.display = "block";
+				else
+					provinceDiv.style.display = "none";
+			});
+		});
+	</script>
+
+17.	Enable client side validation. Toggle Province div in Create.cshtml
