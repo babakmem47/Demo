@@ -623,3 +623,22 @@
 	</script>
 
 17.	Enable client side validation. Toggle Province div in Create.cshtml
+
+	// Enable Server Side validation
+	- Add below code at the beginning of Create Action:
+		public ActionResult Create(SetadFormViewModel viewModel)
+			{
+
+				if (!ModelState.IsValid)
+				{
+					viewModel.IpRanges = _context.IpRanges.ToList();
+					viewModel.Provinces = _context.Provinces.ToList();
+
+					return View("Create", viewModel);
+				}
+			.
+			.
+	// Check if server side validation is working(enabled):
+	- Comment out @Scripts.Render("~/bundles/jqueryval") in Create.cshtml
+
+18. Enable Server side validation   

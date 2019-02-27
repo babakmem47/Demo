@@ -34,13 +34,13 @@ namespace Demo.Controllers
         public ActionResult Create(SetadFormViewModel viewModel)
         {
 
-            //if (!ModelState.IsValid)
-            //{
-            //    viewModel.IpRanges = _context.IpRanges.ToList();
-            //    viewModel.Provinces = _context.Provinces.ToList();
+            if (!ModelState.IsValid)
+            {
+                viewModel.IpRanges = _context.IpRanges.ToList();
+                viewModel.Provinces = _context.Provinces.ToList();
 
-            //    return View("Create", viewModel);
-            //}
+                return View("Create", viewModel);
+            }
             var setad = new Setad
             {
                 Name = viewModel.Name,
