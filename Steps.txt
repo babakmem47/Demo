@@ -651,3 +651,29 @@
 		[ValidateAntiForgeryToken]
 
 19. Disable CSRF attack in Create.cshtml form.
+
+	// Change font for body and headings
+	
+	- in bootstrap.css search for 'Helvetica' 
+	- Select a block with all headings(h1,h2,...h6)
+	- Copy it and paste it in Site.css and add body in the beginning of it and replace Helvetica
+	with IranSansWeb:
+		body,
+			h1,
+			h2,
+			h3,
+			h4,
+			h5,
+			h6,
+			.h1,
+			.h2,
+			.h3,
+			.h4,
+			.h5,
+			.h6 {
+				font-family: "IranSansWeb", Arial, "Helvetica Neue", Helvetica, Arial, sans-serif;
+		}
+	
+	- Save -> Execute program -> Ctrl+Shift+R to reload css in the browser -> everything is fine
+
+20. Change font for body and headings to IranSansWeb. 

@@ -25,11 +25,28 @@ textarea {
 }
 
 /* Bootstrap Overrides */
-
 @font-face {
     font-family: IranSansWeb;
     src: url(/fonts/IRANSansWeb.woff);
 }
+
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: "IranSansWeb", Arial, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+
 .navbar-inverse {
     font-family: IranSansWeb;
 }
@@ -56,15 +73,15 @@ textarea {
 
 .persianHeader {
     text-align: center;
-    font-family: IranSansWeb;
+    /*font-family: IranSansWeb;*/
 }
 
 .persianHeaderAdd {
-    font-family: IranSansWeb;
+    /*font-family: IranSansWeb;*/
 }
 
 .btn-persian {
-    font-family: IranSansWeb;
+    /*font-family: IranSansWeb;*/
 }
 
 .prevent-overlap {
