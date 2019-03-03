@@ -677,3 +677,39 @@
 	- Save -> Execute program -> Ctrl+Shift+R to reload css in the browser -> everything is fine
 
 20. Change font for body and headings to IranSansWeb. 
+
+	// Improving the Look and Feel
+	// Make elements of form a little bit separated:
+		.form-group {
+			margin-bottom: 30px;
+		}
+
+	// Change the size of the lables(also Combobox items)
+		body {
+			font-size: 16px;
+		}
+
+	// make select in form fit to content
+		select.form-control {
+			width: fit-content;
+			padding: 8px 12px
+		}
+
+	// Make textboxes a little bit larger and add more padding
+	- padding: inc inc but we dont do it
+
+	// make the corner of the textboxes more round
+		.form-control {
+			border-radius: 9px;
+		}
+
+	// Make the button a little bit bigger and curl the border:
+		.btn {
+			padding: 9px 20px;
+			font-size: 16px;
+			border-radius: 10px;
+		}
+
+	// Flat design: Disable hover effect/ Shadow around textboxes
+
+21. Improving the look and feel of the form elements.

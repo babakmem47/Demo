@@ -2,6 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     direction: rtl;
+    /*font-size: 16px;*/    /*Add it later*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -94,4 +95,28 @@ h6,
 
 .input-validation-error {
     border: solid 2px red;
+}
+
+.form-group {
+    margin-bottom: 30px;
+}
+
+select.form-control {
+    width: fit-content;
+}
+
+.form-control {
+    border-radius: 9px;
+}
+
+.form-control:focus {
+    border-color: #2196f3;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+}
+
+.btn {
+    padding: 9px 20px;
+    font-size: 16px;
+    border-radius: 10px;
 }
