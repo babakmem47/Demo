@@ -12,12 +12,12 @@
     {
         @Html.AntiForgeryToken()
         <div class="form-group">
-            @Html.LabelFor(m => m.Name)
-            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "نام ستاد..." })
+            @Html.LabelFor(m => m.Name, new { @class = "required" })
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "نام ستاد...", autofocus = "autofocus" })
             @Html.ValidationMessageFor(m => m.Name)
         </div>
         <div class="form-group">
-            @Html.LabelFor(m => m.IpRangeId)
+            @Html.LabelFor(m => m.IpRangeId, new { @class = "required" })
             @Html.DropDownListFor(m => m.IpRangeId, new SelectList(Model.IpRanges, "Id", "Range"), "", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.IpRangeId)
         </div>

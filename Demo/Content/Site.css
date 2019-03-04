@@ -70,6 +70,8 @@ h6,
 
 .dropdown-menu {
     margin: 2px -25px 0;
+    box-shadow: none;
+    -webkit-box-shadow: none;
 }
 
 .persianHeader {
@@ -119,4 +121,11 @@ select.form-control {
     padding: 9px 20px;
     font-size: 16px;
     border-radius: 10px;
+}
+
+.required:after 
+{
+    content: "*";
+    font-weight: bold;
+    color: red; 
 }

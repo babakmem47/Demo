@@ -722,7 +722,7 @@
 	- Replace @User.Identity.GetUserName() instead of Dropdown. 
 	- Move <li> that include logout link inside the dropdown.
 	- Remove <li> @Html.ActionLink("Hello " ... ) code block.
-	    <ul class="nav navbar-nav navbar-right">
+		<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
 				<ul class="dropdown-menu">
@@ -731,6 +731,29 @@
 					<li><a href="javascript:document.getElementById('logoutForm').submit()">خروج</a></li>
 				</ul>
 			</li>
-	    </ul>
+		</ul>
 
 22. Add a DropDownList In NabBar for User's name, SignOut and etc.	
+
+	// Remove shadow from DropDown menu:
+	- Add these 2 css to .dropdown-menu in Site.css
+	.dropdown-menu {
+		box-shadow: none;
+		-webkit-box-shadow: none;
+	}
+
+	// Put red asterisk next to the lable of mandatory fields
+	- In Site.css:
+	.required:after 
+	{
+		content: "*";
+		font-weight: bold;
+		color: red; 
+	}
+	- In Create.cshtml add above class for mandatory field:
+		@Html.LabelFor(m => m.Name, new { @class = "required" })
+
+	// Put the focus on the first field of the form
+	- add autofocus = "autofocus" after placeholder in textboxfor
+		@Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "نام ستاد...", autofocus = "autofocus" })
+23. Remove shadow from DropDown menu, Put red asterisk, Put the focus on the first field.
