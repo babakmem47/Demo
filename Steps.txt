@@ -713,3 +713,24 @@
 	// Flat design: Disable hover effect/ Shadow around textboxes
 
 21. Improving the look and feel of the form elements.
+
+	// Add a DropDownList under User's name for SignOut and other options
+	- https://getbootstrap.com/docs/3.3/components/#navbar
+	- under  <ul class="nav navbar-nav navbar-right"> copy entire <li class="dropdown"> 
+	- Or copy one of the previous dropdowns from _Layout.cshtml
+	- _LoginPartial: paste it below <li> @Html.ActionLink("Hello " ... )
+	- Replace @User.Identity.GetUserName() instead of Dropdown. 
+	- Move <li> that include logout link inside the dropdown.
+	- Remove <li> @Html.ActionLink("Hello " ... ) code block.
+	    <ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">@User.Identity.GetUserName() <span class="caret"></span></a>
+				<ul class="dropdown-menu">
+					<li><a href="#">مشاهده پیام های من</a></li>
+					<li><a href="#">مشاهده آخرین تغییرات من</a></li>
+					<li><a href="javascript:document.getElementById('logoutForm').submit()">خروج</a></li>
+				</ul>
+			</li>
+	    </ul>
+
+22. Add a DropDownList In NabBar for User's name, SignOut and etc.	
