@@ -757,3 +757,61 @@
 	- add autofocus = "autofocus" after placeholder in textboxfor
 		@Html.TextBoxFor(m => m.Name, new { @class = "form-control", placeholder = "نام ستاد...", autofocus = "autofocus" })
 23. Remove shadow from DropDown menu, Put red asterisk, Put the focus on the first field.
+
+	// How to login with “UserName” instead of “Email”
+	- In the AccountController -> Register method (POST)
+
+	Change this:
+
+	var user = new ApplicationUser { UserName = model.Email, Email = model.Email};
+	
+	to this:
+
+	var user = new ApplicationUser
+	{
+		UserName = model.UserName,
+		Email = model.Email
+	};
+
+	UserName is red because we dont have it in RegisterViewModel. So Create it with Alt+Enter and move it to the top and make it required:
+
+	public class RegisterViewModel
+	{
+		[Required]
+		public string UserName { get; set; }
+
+	Then go into the Login.cshtml and change all corresponding e-mail model fields to username instead.
+
+	Login.cshtml: change all m => m.Email to m => m.UserName
+
+	Again, UserName is red. So Alt+Enter to create it in LoginViewModel in AccountViewModels.cs 
+	and also change Display for password field. Note that the type of UserName must be string.
+	Remove Email prop (It is necessary!!)
+	
+	public class LoginViewModel
+	{
+		[Required]
+		[Display(Name = "نام کاربری")]
+		public string UserName { get; set; }
+				
+		[Required]
+		[DataType(DataType.Password)]
+		[Display(Name = "کلمه عبور")]
+		public string Password { get; set; }
+		.
+		.
+		.
+	}
+
+	Go into the Login method (POST) in the AccountController and change model.Email to model.UserName.
+
+	var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, 
+				 model.RememberMe, shouldLockout: false);
+
+	Go to Register.cshtml -> Duplicate Email div -> Change first one to UserName 
+
+	// Move Dropdown for User name in NavBar a little toward right for better display of items in it:
+	.navbar-right {
+		margin-left: 30PX;
+	}
+

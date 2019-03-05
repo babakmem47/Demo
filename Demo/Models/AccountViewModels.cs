@@ -49,13 +49,17 @@ namespace Demo.Models
     public class LoginViewModel
     {
         [Required]
-        [Display(Name = "Email")]
-        [EmailAddress]
-        public string Email { get; set; }
+        [Display(Name = "نام کاربری")]
+        public string UserName { get; set; }
+
+        //[Required]
+        //[Display(Name = "Email")]
+        //[EmailAddress]
+        //public string Email { get; set; }
 
         [Required]
         [DataType(DataType.Password)]
-        [Display(Name = "Password")]
+        [Display(Name = "کلمه عبور")]
         public string Password { get; set; }
 
         [Display(Name = "Remember me?")]
@@ -64,6 +68,9 @@ namespace Demo.Models
 
     public class RegisterViewModel
     {
+        [Required]
+        public string UserName { get; set; }
+
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]

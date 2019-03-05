@@ -66,6 +66,7 @@ h6,
 
 .navbar-right {
     float: left !important;
+    margin-left: 30PX;
 }
 
 .dropdown-menu {
