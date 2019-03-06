@@ -33,7 +33,7 @@
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Address)
-            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = "خیابان ..." })
+            @Html.TextAreaFor(m => m.Address, new { @class = "form-control", placeholder = " شهر ... خیابان ..." })
             @Html.ValidationMessageFor(m => m.Address)
         </div>
         <div class="checkbox">
@@ -71,6 +71,18 @@
                     provinceDiv.style.display = "block";
                 else
                     provinceDiv.style.display = "none";
+            });
+
+            var maxLength = 4;
+            $("#Shakhes").on("keypress keyup blur", function (event) {
+                var value = $(this).val();
+                if (value.length >= maxLength)
+                    event.preventDefault();
+
+                $(this).val($(this).val().replace(/[^\d].+/, ""));
+                if ((event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }
             });
         });
     </script>

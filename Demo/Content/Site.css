@@ -66,13 +66,18 @@ h6,
 
 .navbar-right {
     float: left !important;
-    margin-left: 30PX;
+    margin-left: 30px;
 }
 
 .dropdown-menu {
     margin: 2px -25px 0;
     box-shadow: none;
     -webkit-box-shadow: none;
+}
+
+ul .dropdown-menu .klishe {
+    left: 33px;
+    min-width: 136px;
 }
 
 .persianHeader {
@@ -104,6 +109,11 @@ h6,
     margin-bottom: 30px;
 }
 
+#Shakhes {
+   width:70px;
+    padding: 8px 4px;
+}
+
 select.form-control {
     width: fit-content;
 }
@@ -129,4 +139,15 @@ select.form-control {
     content: "*";
     font-weight: bold;
     color: red; 
+}
+
+.labelNextToTextbox {
+    float: right;
+    padding: 7px;
+    width: 70px;
+    text-align: right;
+}
+
+.textboxNextToLabel {
+    width:auto;
 }

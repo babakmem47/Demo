@@ -812,6 +812,62 @@
 
 	// Move Dropdown for User name in NavBar a little toward right for better display of items in it:
 	.navbar-right {
-		margin-left: 30PX;
+		margin-left: 30px;
 	}
 
+24. login with UserName instead of Email + Move Dropdown for User into right.
+
+	// improving Login page look and feel
+	// We want to bring label and textbox for username and password next to each other
+	- Replace div for 2 text boxes with the following code(like Create.cshtml label and textbox):
+		<div class="form-group">
+			@Html.LabelFor(m => m.UserName, new { @class = "labelNextToTextbox" })
+			@Html.TextBoxFor(m => m.UserName, new { @class = "form-control textboxNextToLabel", autofocus = "autofocus" })
+			@Html.ValidationMessageFor(m => m.UserName)
+		</div>
+		<div class="form-group">
+			@Html.LabelFor(m => m.Password, new { @class = "labelNextToTextbox" })
+			@Html.TextBoxFor(m => m.Password, new { @class = "form-control textboxNextToLabel" })
+			@Html.ValidationMessageFor(m => m.Password)
+		</div>
+
+	- In Site.css:
+		.labelNextToTextbox {
+			float: right;
+			padding: 7px;
+			width: 70px;
+			text-align: right;
+		}
+
+		.textboxNextToLabel {
+			width:auto;
+		}
+
+	- Remove register link. We will make it accessible only for admin in the future. 
+
+	// change the width of Shakhes field in Create.cshtml:
+	#Shakhes {
+		width:70px;
+		padding: 8px 4px;  /* 4px to make placeholder fit in it */
+	}
+
+	// Make Shakhes field only accept integer digit (0 .. 9)
+	- in script section in Create.cshtml:
+		$("#Shakhes").on("keypress keyup blur",function (event) {    
+			$(this).val($(this).val().replace(/[^\d].+/, ""));
+			if ((event.which < 48 || event.which > 57)) {
+				event.preventDefault();
+			}
+		});
+
+	// Make Shakhes field only accept maximum 4 characters
+	- Insert below 3 line codes in the above code block:
+	$("#Shakhes").on("keypress keyup blur", function (event) {
+		var value = $(this).val();
+		if (value.length >= maxLength)
+			event.preventDefault();
+		.
+		.
+		.
+
+25. Login Page: Label & Textbox for username and password next to each other. Make Shakhes field only accept 4 integer digit.

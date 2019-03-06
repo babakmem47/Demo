@@ -48,7 +48,7 @@ namespace Demo.Models
 
     public class LoginViewModel
     {
-        [Required]
+        [Required(ErrorMessage = "نام کاربر را وارد نمائید")]
         [Display(Name = "نام کاربری")]
         public string UserName { get; set; }
 
@@ -57,7 +57,7 @@ namespace Demo.Models
         //[EmailAddress]
         //public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "کلمه عبور را وارد نمائید")]
         [DataType(DataType.Password)]
         [Display(Name = "کلمه عبور")]
         public string Password { get; set; }
