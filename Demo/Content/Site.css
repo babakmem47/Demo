@@ -151,3 +151,14 @@ select.form-control {
 .textboxNextToLabel {
     width:auto;
 }
+
+/* DataTable Overrides*/
+div.dataTables_wrapper div.dataTables_filter input {
+    font-family: IranSansWeb;
+    font-size: 14px;
+}
+
+div.dataTables_wrapper div.dataTables_length select {
+    width: 55px;
+    padding: 3px 3px;
+}

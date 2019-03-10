@@ -5,6 +5,150 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2 class="persianHeader">ستاد و ادارات</h2>
-@*<button class="btn btn-primary btn-persian">افزودن ستاد(اداره) جدید</button>*@
-@Html.ActionLink("افزودن ستاد(اداره) جدید", "Create", "Setad", null, new { @class = "btn btn-primary btn-persian" })
+@*<h2 class="persianHeader">ستاد و ادارات</h2>*@
+@*$1$<button class="btn btn-primary btn-persian">افزودن ستاد(اداره) جدید</button>#1#*@
+@*@Html.ActionLink("افزودن ستاد(اداره) جدید", "Create", "Setad", null, new { @class = "btn btn-primary btn-persian" })*@
+
+<div class="row">
+    <div class="col-lg-1 col-xs-1"></div>
+    <div class="col-lg-6 col-xs-6" align="center">
+        <h2>ستاد و ادارات</h2>
+    </div>
+    <div class="col-lg-5 col-xs-5"></div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-xs-12" align="right">
+        @Html.ActionLink("افزودن ستاد(اداره) جدید", "Create", "Setad", null, new {@class = "btn btn-primary btn-persian"})
+    </div>
+</div>
+<br/>
+<div class="row">
+    @*<div class="col-lg-1 col-xs-1"></div>*@
+    <div class="col-lg-12 col-xs-12">
+        <table id="tableOfSetads" class="table table-bordered table-hover table-striped table-fit-to-content" dir="rtl">
+            <thead>
+            <tr class="bg-success text-primary">
+                <th class="text-center">نام ستاد</th>
+                <th class="text-center">رنج آی پی</th>
+                <th class="text-center">شاخص</th>
+                <th class="text-center">ایمیل منطقه</th>
+                <th class="text-center">شهر</th>
+                <th class="text-center">آدرس</th>
+                <th class="text-center">مدیریت شعب؟</th>
+                <th class="text-center">ویرایش</th>
+                <th class="text-center">حذف</th>
+            </tr>
+            </thead>
+
+            <tbody></tbody>
+
+        </table>
+    </div>
+    @*<div class="col-lg-1 col-xs-1"></div>*@
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var i = 1;
+            var table = $("#tableOfSetads").DataTable({
+
+                "pageLength": 60,
+
+                "oLanguage": {
+                    "sSearch": "جستجو  ",
+                    "sSearchPlaceholder": "یه چیزی بنویس ...",
+                    "sLengthMenu": "نمایش  _MENU_  رکورد در جدول",
+                    "decimal": "",
+                    "sEmptyTable": "هیچ داده قابل دسترسی در جدول یافت نشد",
+                    "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ ورودی",
+                    "sInfoEmpty": "نمایش 0 تا 0 از صفر ورودی",
+                    "sInfoFiltered": "(فیلتر شده از _MAX_ کل ورودی ها)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "sLoadingRecords": "بارگذاری ...",
+                    "sProcessing": "پردازش ...",
+                    "sZeroRecords": "هیچ رکوردی که مطابقت داشته باشد یافت نشد",
+                    "oPaginate": {
+                        "sFirst": "اول",
+                        "sLast": "آخر",
+                        "sNext": "بعدی",
+                        "sPrevious": "قبلی"
+                    }
+                },
+
+                "sDom":
+                    "<'row'<'col-sm-6'f><'col-sm-6'l>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+
+                "columnDefs": [
+                    { "className": "text-center", "targets": "_all" }
+                ],
+
+                ajax: {
+                    url: "/api/setads",
+                    dataSrc: ""
+                },
+
+                columns: [
+                    {
+                        data: "name",
+                        render: function (data, type, setad) {
+                            return "<a href='/Setad/Edit/" + setad.id + "'>" + setad.name + "</a>";
+                        }
+                    },
+                    {
+                        data: "ipRange"
+                    },
+                    {
+                        data: "shakhes"
+                    },
+                    {
+                        data: "email"
+                    },
+                    {
+                        data: "cityCenter"
+                    },
+                    {
+                        data: "address"
+                    },
+                    {
+                        data: "IsModiriatShoab"
+                    },
+                    {
+                        data: "id",
+                        render: function (data, type, setad) {
+                            return "<a href='/Setad/Edit/" + setad.id + "'>" + "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>" + "</a>";
+                        }
+                    },
+                    {
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-setad-id=" + data + "> <span class='glyphicon glyphicon-remove'></span>" + "</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#tableOfSetads").on("click", ".js-delete", function () {
+                var button = $(this);
+
+                bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
+                    function (result) {
+                        if (result) {
+                            $.ajax({
+                                url: "/api/setads/" + button.attr("data-setad-id"),
+                                method: "DELETE",
+                                success: function () {
+                                    table.row(button.parents("tr")).remove().draw();
+                                }
+                            });
+                        }
+                    });
+            });
+        });
+    </script>
+}

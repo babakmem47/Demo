@@ -870,4 +870,107 @@
 		.
 		.
 
-25. Login Page: Label & Textbox for username and password next to each other. Make Shakhes field only accept 4 integer digit.
+25. Login Page: Label & Textbox for username and password next to each other. Make Shakhes field only accept 0-9 and max 4 char.
+
+	// Display the list of Setad in Setad.cshtml
+	- PM> Install-Package jquery.datatables -Version:1.10.11
+
+	// We only use 2 scripts of all js files in /Scripts/DataDables/ folder
+	// Include these two in our bundleconfig:
+	- In BundleConfig.cs, add below code under ~/bundles/lib:
+		"~/Scripts/DataTables/jquery.dataTables.js",
+		"~/Scripts/DataTables/dataTables.bootstrap.js"));
+
+	// Also we need to add datatable stylesheet to our css bundle
+	- In BundleConfig.cs, add below code under ~/Content/css above site.css:
+		"~/Content/DataTables/css/dataTables.bootstrap.css",
+	// This stylesheet above make datatable like bootstrap table
+
+
+	// /Setad/index.cshtml: 
+	- copy/paste previous code from LNDCodeFirst\LNDCodeFirst\Views\Province\index in it
+	- Edit the column name so it can display all information:
+	- Replace setad instead of province
+	
+	// Change css of Datatable: 
+	- Make یه چیزی بنویس...  font IranSansWeb and change the width of select 
+	- In Site.css:
+		/* DataTable Overrides*/
+		div.dataTables_wrapper div.dataTables_filter input {
+			font-family: IranSansWeb;
+			font-size: 14px;
+		}
+
+		div.dataTables_wrapper div.dataTables_length select {
+			width: 55px;
+			padding: 3px 3px;
+		}
+
+
+	// Create Api for showing Setads in /Setad/index.cshtml
+	- Create Api folder under Controllers -> R-Click -> Add Controller ... -> New Web Api 2 Controller - Empty
+	- Name it SetadsController -> Copy "GlobalConfiguration.Configure(WebApiConfig.Register);" to Global.asax.cs
+	- Open SetadsController: 
+		private ApplicationDbContext _context;
+
+		public SetadsController()
+		{
+			_context = new ApplicationDbContext();
+		}
+
+		public IEnumerable<SetadDto> GetAllSetads()
+		{
+			var setads = _context.Setads
+				.Include(s => s.IpRange)
+				.Include(s => s.Province)
+				.ToList();
+
+			return setads.Select(s => new SetadDto
+			{
+				Name = s.Name,
+				IpRange = new IpRangeDto
+				{
+					Range = s.IpRange.Range,
+					Mask = s.IpRange.Mask
+				},
+				Shakhes = s.Shakhes,
+				Email = s.Email,
+				Province = new ProvinceDto
+				{
+					Center = (s.ProvinceId != null) ? s.Province.CityCenter : "",
+					Name = (s.ProvinceId != null) ? s.Province.ProvinceName : "",
+					PreTel = (s.ProvinceId != null) ? s.Province.PreTelCode : ""
+				},
+				Address = s.Address,
+				IsModiriatShoab = s.IsModiriatShoab
+			});
+		}
+
+	Create 3 Dto class:
+		public class SetadDto
+		{
+			public string Name { get; set; }
+			public string Shakhes { get; set; }
+			public bool IsModiriatShoab { get; set; }
+			public string Address { get; set; }
+			public IpRangeDto IpRange { get; set; }
+			public string Email { get; set; }
+			public ProvinceDto Province { get; set; }
+			public int? ProvinceId { get; set; }
+		}
+
+		public class IpRangeDto
+		{
+			public string Range { get; set; }
+			public string Mask { get; set; }
+		}
+
+	    public class ProvinceDto
+		{
+			public string Name { get; set; }
+			public string Center { get; set; }
+			public string PreTel { get; set; }
+		}
+
+	- Test api with Postman. Everything works fine!
+26. Install jQuery.DataTable + copy old config in /Setad/index.cshtml and edit + Create SetadsController api + Dtos

@@ -124,3 +124,11 @@ D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateIpRangeClassUsing
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddIsUnusedColumnToIpRange.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.MakeIsModiriatShoabOptional.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.PopulateSetadWithModiriatShoabs.resources
+D:\Projects\Github\Demo\Demo\bin\System.Net.Http.Formatting.dll
+D:\Projects\Github\Demo\Demo\bin\System.Web.Http.dll
+D:\Projects\Github\Demo\Demo\bin\System.Web.Http.WebHost.dll
+D:\Projects\Github\Demo\Demo\bin\System.Net.Http.Formatting.xml
+D:\Projects\Github\Demo\Demo\bin\System.Web.Http.xml
+D:\Projects\Github\Demo\Demo\bin\System.Web.Http.WebHost.xml
+D:\Projects\Github\Demo\Demo\bin\AutoMapper.dll
+D:\Projects\Github\Demo\Demo\bin\AutoMapper.xml
