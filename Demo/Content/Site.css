@@ -2,6 +2,7 @@
     padding-top: 50px;
     padding-bottom: 20px;
     direction: rtl;
+    font-size: 12px;
     /*font-size: 16px;*/    /*Add it later*/
 }
 
@@ -151,6 +152,7 @@ select.form-control {
 .textboxNextToLabel {
     width:auto;
 }
+
 
 /* DataTable Overrides*/
 div.dataTables_wrapper div.dataTables_filter input {

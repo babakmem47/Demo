@@ -37,3 +37,4 @@
 /// <reference path="datatables/datatables.keytable.min.js" />
 /// <reference path="datatables/datatables.jqueryui.min.js" />
 /// <reference path="datatables/datatables.foundation.min.js" />
+/// <reference path="bootbox.min.js" />

@@ -57,8 +57,8 @@ namespace Demo.Controllers
                 setad.IsModiriatShoab = true;
             }
 
-            //_context.Setads.Add(setad);
-            //_context.SaveChanges();
+            _context.Setads.Add(setad);
+            _context.SaveChanges();
 
             return RedirectToAction("Index", "Setad");
         }

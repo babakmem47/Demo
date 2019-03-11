@@ -26,6 +26,7 @@ namespace Demo.Controllers.Api
 
             return setads.Select(s => new SetadDto
             {
+                Id = s.Id,
                 Name = s.Name,
                 IpRange = new IpRangeDto
                 {

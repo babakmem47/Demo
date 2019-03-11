@@ -12,7 +12,8 @@ namespace Demo
                         "~/Scripts/bootstrap.js",
                         "~/Scripts/respond.js",
                         "~/Scripts/DataTables/jquery.dataTables.js",
-                        "~/Scripts/DataTables/dataTables.bootstrap.js"));
+                        "~/Scripts/DataTables/dataTables.bootstrap.js",
+                        "~/Scripts/bootbox.min.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
