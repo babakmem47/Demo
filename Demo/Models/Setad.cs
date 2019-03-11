@@ -22,6 +22,6 @@
 
         public int? ProvinceId { get; set; }
 
-        public bool IsDeleted { get; set; }
+        public bool? IsDeleted { get; set; }
     }
 }

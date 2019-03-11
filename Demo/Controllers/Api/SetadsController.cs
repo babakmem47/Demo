@@ -1,10 +1,9 @@
-﻿using Demo.Models;
+﻿using Demo.Dtos;
+using Demo.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Http;
-using AutoMapper;
-using Demo.Dtos;
 
 namespace Demo.Controllers.Api
 {
@@ -44,6 +43,16 @@ namespace Demo.Controllers.Api
                 Address = s.Address,
                 IsModiriatShoab = s.IsModiriatShoab
             });
+        }
+
+        [Authorize]
+        public IHttpActionResult DeleteSetad(int id)
+        {
+            //var currentUserId = User.Identity.GetUserId();
+            var setad = _context.Setads.Single(s => s.Id == id);
+
+
+            return Ok("Deleted Successfully");
         }
     }
 }

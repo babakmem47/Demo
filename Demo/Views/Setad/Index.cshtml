@@ -142,7 +142,6 @@
 
             $("#tableOfSetads").on("click", ".js-delete", function () {
                 var button = $(this);
-                console.log("salam");
                 bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
                     function (result) {
                         if (result) {
@@ -153,7 +152,6 @@
                                     table.row(button.parents("tr")).remove().draw();
                                 }
                             });
-                            console.log(button.attr("data-setad-id"));
                         }
                     });
             });

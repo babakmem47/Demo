@@ -965,7 +965,7 @@
 			public string Mask { get; set; }
 		}
 
-	    public class ProvinceDto
+		public class ProvinceDto
 		{
 			public string Name { get; set; }
 			public string Center { get; set; }
@@ -983,32 +983,38 @@
 			.
 			"~/Scripts/bootbox.min.js"));
 
-	          
+			  
 			  
 	- At the end of datatable jquery, Define delete button:
 			  {
-                        data: "id",
-                        render: function (data) {
-                            return "<button class='btn-link js-delete' data-setad-id=" + data + "> <span class='glyphicon glyphicon-remove'></span>" + "</button>";
-                        }
-                    }
-                ]
-            });
+						data: "id",
+						render: function (data) {
+							return "<button class='btn-link js-delete' data-setad-id=" + data + "> <span class='glyphicon glyphicon-remove'></span>" + "</button>";
+						}
+					}
+				]
+			});
 
 			// Click event for delete button:
-            $("#tableOfSetads").on("click", ".js-delete", function () {
-                var button = $(this);
-                bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
-                    function (result) {
-                        if (result) {
-                            $.ajax({
-                                url: "/api/setads/" + button.attr("data-setad-id"),
-                                //method: "DELETE",
-                                success: function () {
-                                    table.row(button.parents("tr")).remove().draw();
-                                }
-                            });
-                        }
-                    });
-            });
+			$("#tableOfSetads").on("click", ".js-delete", function () {
+				var button = $(this);
+				bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
+					function (result) {
+						if (result) {
+							$.ajax({
+								url: "/api/setads/" + button.attr("data-setad-id"),
+								//method: "DELETE",
+								success: function () {
+									table.row(button.parents("tr")).remove().draw();
+								}
+							});
+						}
+					});
+			});
 27. Add bootbox.min.js to project
+
+	// Create Api for Delete a Setad(logically) in SetadsController:
+	- Add a new column 'IsDeleted' to Setad.cs:
+		public bool IsDeleted { get; set; }
+
+	- 
