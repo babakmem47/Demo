@@ -1015,6 +1015,32 @@
 
 	// Create Api for Delete a Setad(logically) in SetadsController:
 	- Add a new column 'IsDeleted' to Setad.cs:
-		public bool IsDeleted { get; set; }
+		public bool? IsDeleted { get; set; }
 
-	- 
+	- PM> Add-Migration AddIsDeletedToSetad
+	- PM> Update-Database
+28. Add IsDeleted column to Setad.cs
+	
+	- Add message to return response of api 
+            return Ok("Record '" + setad.Name + "' Logically Deleted Successfully");
+	
+	- Replace success with .done .fail chain method:
+	    $("#tableOfSetads").on("click", ".js-delete", function () {
+        var button = $(this);
+        bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
+            function (result) {
+                if (result) {
+                    $.ajax({
+                            url: "/api/setads/" + button.attr("data-setad-id"),
+                            method: "DELETE"
+                        })
+                        .done(function() {
+                            table.row(button.parents("tr")).remove().draw();
+                        })
+                        .fail(function() {
+                            alert("Something failed");
+                        });
+                    }
+                });
+        });
+29. Add message to return response of api + Replace success with .done .fail chain method

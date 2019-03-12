@@ -19,6 +19,7 @@ namespace Demo.Controllers.Api
         public IEnumerable<SetadDto> GetAllSetads()
         {
             var setads = _context.Setads
+                .Where(s => s.IsDeleted != true)
                 .Include(s => s.IpRange)
                 .Include(s => s.Province)
                 .ToList();
@@ -45,14 +46,16 @@ namespace Demo.Controllers.Api
             });
         }
 
-        [Authorize]
+        [HttpDelete]
         public IHttpActionResult DeleteSetad(int id)
         {
             //var currentUserId = User.Identity.GetUserId();
             var setad = _context.Setads.Single(s => s.Id == id);
 
+            setad.IsDeleted = true;
+            _context.SaveChanges();
 
-            return Ok("Deleted Successfully");
+            return Ok("Record '" + setad.Name + "' Logically Deleted Successfully");
         }
     }
 }

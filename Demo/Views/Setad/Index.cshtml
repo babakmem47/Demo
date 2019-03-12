@@ -146,14 +146,17 @@
                     function (result) {
                         if (result) {
                             $.ajax({
-                                url: "/api/setads/" + button.attr("data-setad-id"),
-                                //method: "DELETE",
-                                success: function () {
+                                    url: "/api/setads/" + button.attr("data-setad-id"),
+                                    method: "DELETE"
+                                })
+                                .done(function() {
                                     table.row(button.parents("tr")).remove().draw();
-                                }
-                            });
-                        }
-                    });
+                                })
+                                .fail(function() {
+                                    alert("Something failed");
+                                });
+                            }
+                        });
             });
         });
     </script>
