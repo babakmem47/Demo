@@ -164,3 +164,9 @@ div.dataTables_wrapper div.dataTables_length select {
     width: 55px;
     padding: 3px 3px;
 }
+
+/* Bootbox Overrides */
+.btn-left-bootbox {
+    margin-left: 20px;
+}
+

@@ -1022,25 +1022,93 @@
 28. Add IsDeleted column to Setad.cs
 	
 	- Add message to return response of api 
-            return Ok("Record '" + setad.Name + "' Logically Deleted Successfully");
+			return Ok("Record '" + setad.Name + "' Logically Deleted Successfully");
 	
 	- Replace success with .done .fail chain method:
-	    $("#tableOfSetads").on("click", ".js-delete", function () {
-        var button = $(this);
-        bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
-            function (result) {
-                if (result) {
-                    $.ajax({
-                            url: "/api/setads/" + button.attr("data-setad-id"),
-                            method: "DELETE"
-                        })
-                        .done(function() {
-                            table.row(button.parents("tr")).remove().draw();
-                        })
-                        .fail(function() {
-                            alert("Something failed");
-                        });
-                    }
-                });
-        });
+		$("#tableOfSetads").on("click", ".js-delete", function () {
+		var button = $(this);
+		bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
+			function (result) {
+				if (result) {
+					$.ajax({
+							url: "/api/setads/" + button.attr("data-setad-id"),
+							method: "DELETE"
+						})
+						.done(function() {
+							table.row(button.parents("tr")).remove().draw();
+						})
+						.fail(function() {
+							alert("Something failed");
+						});
+					}
+				});
+		});
 29. Add message to return response of api + Replace success with .done .fail chain method
+
+	// Make deleted row fadeOut:
+		.done(function () {
+			var rowToBeDelete = button.parents("tr");
+			rowToBeDelete.fadeOut(400,
+				function() {
+					table.row(rowToBeDelete).remove().draw();
+				});
+		})
+	
+	// Use bootbox dialogue instead of confirm:
+			$("#tableOfSetads").on("click", ".js-delete", function () {
+				var button = $(this);
+				var dialog = bootbox.dialog({
+					title: 'تائید',
+					message: "آیا مطمئن هستید که می خواهید این ستاد حذف شود؟",
+					buttons: {
+						no: {
+							label: "خیر",
+							className: 'btn-default btn-left-bootbox',
+							callback: function () {
+								bootbox.hideAll();
+							}
+						},
+						yes: {
+							label: "حذف",
+							className: 'btn-danger',
+							callback: function () {
+								$.ajax({
+										url: "/api/setads/" + button.attr("data-setad-id"),
+										method: "DELETE"
+									})
+									.done(function () {
+										var rowToBeDelete = button.parents("tr");
+										rowToBeDelete.fadeOut(200,
+											function () {
+												table.row(rowToBeDelete).remove().draw();
+											});
+									})
+									.fail(function () {
+										alert("Something failed");
+									});
+							}
+						}
+					}
+				});
+			});
+
+
+
+	// Add space between two button(خیر حذف) in Bootbox Dialog box:
+		- Site.css:
+			.btn-left-bootbox {
+				margin-left: 20px;
+			}
+		- Add this line for  
+				dialog.find('.btn-left-bootbox').css({ 'margin-left': '20px' });
+
+	// Remove(disable) Sort icon from a column:
+		- Add 'orderable: false,' to the beginning of definition of each column in jQuery:
+			columns: [
+				{
+					orderable: false,
+					data: ...
+				}
+		
+			]
+30. FadeOut deleted row + bootbox dialogue + space between two button + Remove(disable) Sort icon

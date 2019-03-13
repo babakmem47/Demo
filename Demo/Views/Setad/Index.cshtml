@@ -87,7 +87,7 @@
                 "columnDefs": [
                     { "className": "text-center", "targets": "_all" }
                 ],
-
+                
                 ajax: {
                     url: "/api/setads",
                     dataSrc: ""
@@ -107,15 +107,18 @@
                         data: "shakhes"
                     },
                     {
+                        orderable: false,
                         data: "email"
                     },
                     {
                         data: "province.center"
                     },
                     {
+                        orderable: false,
                         data: "address"
                     },
                     {
+                        orderable: false,
                         data: "isModiriatShoab",
                         render: function (data) {
                             if(data)
@@ -126,12 +129,14 @@
                         }
                     },
                     {
+                        orderable: false,
                         data: "id",
                         render: function (data, type, setad) {
                             return "<a href='/Setad/Edit/" + setad.id + "'>" + "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>" + "</a>";
                         }
                     },
                     {
+                        orderable: false,
                         data: "id",
                         render: function (data) {
                             return "<button class='btn-link js-delete' data-setad-id=" + data + "> <span class='glyphicon glyphicon-remove'></span>" + "</button>";
@@ -142,21 +147,40 @@
 
             $("#tableOfSetads").on("click", ".js-delete", function () {
                 var button = $(this);
-                bootbox.confirm("آیا مطمئن هستید که می خواهید این منطقه حذف شود؟",
-                    function (result) {
-                        if (result) {
-                            $.ajax({
-                                    url: "/api/setads/" + button.attr("data-setad-id"),
-                                    method: "DELETE"
-                                })
-                                .done(function() {
-                                    table.row(button.parents("tr")).remove().draw();
-                                })
-                                .fail(function() {
-                                    alert("Something failed");
-                                });
+                var dialog = bootbox.dialog({
+                    title: 'تائید',
+                    message: "آیا مطمئن هستید که می خواهید این ستاد حذف شود؟",
+                    buttons: {
+                        no: {
+                            label: "خیر",
+                            className: 'btn-default btn-left-bootbox',
+                            callback: function () {
+                                bootbox.hideAll();
                             }
-                        });
+                        },
+                        yes: {
+                            label: "حذف",
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                        url: "/api/setads/" + button.attr("data-setad-id"),
+                                        method: "DELETE"
+                                    })
+                                    .done(function () {
+                                        var rowToBeDelete = button.parents("tr");
+                                        rowToBeDelete.fadeOut(200,
+                                            function () {
+                                                table.row(rowToBeDelete).remove().draw();
+                                            });
+                                    })
+                                    .fail(function () {
+                                        alert("Something failed");
+                                    });
+                            }
+                        }
+                    }
+                });
+                dialog.find('.btn-left-bootbox').css({ 'margin-left': '20px' });
             });
         });
     </script>
