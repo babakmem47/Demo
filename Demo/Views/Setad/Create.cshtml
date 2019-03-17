@@ -20,6 +20,7 @@
             @Html.LabelFor(m => m.IpRangeId, new { @class = "required" })
             @Html.DropDownListFor(m => m.IpRangeId, new SelectList(Model.IpRanges, "Id", "Range"), "", new { @class = "form-control" })
             @Html.ValidationMessageFor(m => m.IpRangeId)
+            @Html.ActionLink("ایجاد رنج جدید", "Create", "Ip", null, new { @class = "colorblue" })
         </div>
         <div class="form-group">
             @Html.LabelFor(m => m.Shakhes)

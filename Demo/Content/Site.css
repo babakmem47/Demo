@@ -79,8 +79,8 @@ h6,
 
 .dropdown-menu {
     margin: 2px -25px 0;
-    box-shadow: none;
     -webkit-box-shadow: none;
+    box-shadow: none;
 }
 
 ul .dropdown-menu .klishe {
@@ -160,6 +160,9 @@ select.form-control {
     width:auto;
 }
 
+.colorblue {
+    color: blue;
+}
 
 /* DataTable Overrides*/
 div.dataTables_wrapper div.dataTables_filter input {

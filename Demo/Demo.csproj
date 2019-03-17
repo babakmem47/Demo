@@ -178,6 +178,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\Api\SetadsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\IpController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\SetadController.cs" />
     <Compile Include="Dtos\IpRangeDto.cs" />
@@ -507,6 +508,8 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Setad\Index.cshtml" />
     <Content Include="Views\Setad\Create.cshtml" />
+    <Content Include="Views\Ip\Index.cshtml" />
+    <Content Include="Views\Ip\Create.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

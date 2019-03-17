@@ -1125,3 +1125,22 @@
 	- Add this class to the first element(not sure it is the best practice)
 		@Html.LabelFor(m => m.Name, new { @class = "required voffset4" })
 31. Add Vertical Space Between the Heading and The items below.
+
+	// Add a link below Ip Range combobox select (in Views/Setad/Create.cshtml) to create new IpRange and make it blue
+		- @Html.ActionLink("ایجاد رنج جدید", "Create", "Ip", null, new { @class = "colorblue" })
+		- in Site.css:
+			.colorblue {
+				color: blue;
+			}
+	// in the above link, both "Create" and "Ip" are red. "Create" is an action in "Ip" Controller:
+	// Create Ip Controller:
+		-  in Solution Explorer: R-Click on Controllers -> Add -> Controllers... -> MVC5 Controller - Empty -> name it: IpController
+		- Alt+Enter on red View() in new controller to create corresponding view (Views/Ip/index.cshtml)
+	
+	// Create "Create" action in Ip Controller:
+		- IpController -> mvcaction4 tab -> name it Create ->  Alt+Enter on red View() to create corresponding view (Views/Ip/Create.cshtml)
+		- Change the title of new view:
+			<h2>ایجاد رنج آی پی جدید</h2>
+		
+		- Test the link (in Views/Setad/Create.cshtml). It has to work properly!
+32. Add a link below Ip Range combobox for new IpRange + Add IpController + Create Action 'Create' + Create views for Index and Create + Test link
