@@ -134,3 +134,4 @@ D:\Projects\Github\Demo\Demo\bin\AutoMapper.dll
 D:\Projects\Github\Demo\Demo\bin\AutoMapper.xml
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.Test.resources
 D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.AddIsDeletedToSetad.resources
+D:\Projects\Github\Demo\Demo\obj\Debug\Demo.Migrations.DateCreatedAndDateModifiedToIpRange.resources

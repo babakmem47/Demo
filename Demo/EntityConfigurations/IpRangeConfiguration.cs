@@ -23,6 +23,12 @@ namespace Demo.EntityConfigurations
                 .IsRequired()
                 .HasMaxLength(2).IsFixedLength();
 
+            Property(ip => ip.DateCreated)
+                .IsRequired();
+
+            Property(ip => ip.DateModified)
+                .IsOptional();
+            
             // One-to-Many with Setad
             HasMany(ip => ip.Setads)
                 .WithRequired(st => st.IpRange);

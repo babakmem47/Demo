@@ -1144,3 +1144,26 @@
 		
 		- Test the link (in Views/Setad/Create.cshtml). It has to work properly!
 32. Add a link below Ip Range combobox for new IpRange + Add IpController + Create Action 'Create' + Create views for Index and Create + Test link
+
+	// Add 2 column: DateCreated and DateModified to IpRange:
+	- Add 2 prop below to IpRange.cs:
+		public DateTime DateCreated { get; set; }        
+		public DateTime? DateModified { get; set; }
+	
+	- Add Fluent Api for these new columns to IpRangeConfiguration.cs:
+		
+		Property(ip => ip.DateCreated)
+		.IsRequired();
+
+		Property(ip => ip.DateModified)
+			.IsOptional();
+ 
+	- PM> Add-Migration DateCreatedAndDateModifiedToIpRange
+	- PM> Update-Database
+
+	- In SQLServer, execute below query to update newly created DateCreated column to DateTime.Now(); or set it to today's datetime:
+
+		UPDATE [dbo].[IpRanges]
+		SET  [DateCreated] = GETDATE();
+33. Add DateCreated and DateModified to IpRange and set DateCreated to today's datetime.
+

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Demo.Models
 {
@@ -11,6 +12,10 @@ namespace Demo.Models
         public string Mask { get; set; }
 
         public bool IsUnused { get; set; }
+
+        public DateTime DateCreated { get; set; }
+
+        public DateTime? DateModified { get; set; }
 
         public ICollection<Setad> Setads { get; set; }
     }

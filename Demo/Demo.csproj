@@ -258,6 +258,10 @@
     <Compile Include="Migrations\201903110819466_AddIsDeletedToSetad.Designer.cs">
       <DependentUpon>201903110819466_AddIsDeletedToSetad.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201903170822355_DateCreatedAndDateModifiedToIpRange.cs" />
+    <Compile Include="Migrations\201903170822355_DateCreatedAndDateModifiedToIpRange.Designer.cs">
+      <DependentUpon>201903170822355_DateCreatedAndDateModifiedToIpRange.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
@@ -572,6 +576,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201903110819466_AddIsDeletedToSetad.resx">
       <DependentUpon>201903110819466_AddIsDeletedToSetad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201903170822355_DateCreatedAndDateModifiedToIpRange.resx">
+      <DependentUpon>201903170822355_DateCreatedAndDateModifiedToIpRange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
