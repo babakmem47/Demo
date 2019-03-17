@@ -1112,3 +1112,16 @@
 		
 			]
 30. FadeOut deleted row + bootbox dialogue + space between two button + Remove(disable) Sort icon
+
+	// Add Vertical Space Between the Heading and The items below it:
+	- in Site.css, add these classes below before bootstrap overrdies:
+		.voffset { margin-top: 2px; }
+		.voffset1 { margin-top: 5px; }
+		.voffset2 { margin-top: 10px; }
+		.voffset3 { margin-top: 20px; }
+		.voffset4 { margin-top: 40px; }
+		.voffset5 { margin-top: 80px; }
+
+	- Add this class to the first element(not sure it is the best practice)
+		@Html.LabelFor(m => m.Name, new { @class = "required voffset4" })
+31. Add Vertical Space Between the Heading and The items below.
