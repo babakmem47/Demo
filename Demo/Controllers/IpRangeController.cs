@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Demo.Controllers
 {
-    public class IpController : Controller
+    public class IpRangeController : Controller
     {
         // GET: Ip
         public ActionResult Index()

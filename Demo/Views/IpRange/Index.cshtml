@@ -1,0 +1,163 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "رنج های آی پی موجود";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-lg-2 col-xs-2"></div>
+    <div class="col-lg-6 col-xs-6" align="center">
+        <h2>رنج آی پی های موجود</h2>
+    </div>
+    <div class="col-lg-4 col-xs-4"></div>
+</div>
+<div class="row voffset3">
+    <div class="col-lg-1 col-xs-1"></div>
+    <div class="col-lg-10 col-xs-10" align="right">
+        @Html.ActionLink("افزودن رنج آی پی جدید", "Create", "IpRange", null, new { @class = "btn btn-primary btn-persian" })
+    </div>
+    <div class="col-lg-1 col-xs-1"></div>
+</div>
+<br />
+<div class="row">
+    <div class="col-lg-1 col-xs-1"></div>
+    <div class="col-lg-10 col-xs-10">
+        <table id="tableOfIpRanges" class="table table-bordered table-hover table-striped table-fit-to-content" dir="rtl">
+            <thead>
+                <tr class="bg-success text-primary">
+                    <th class="text-center">رنج آی پی</th>
+                    <th class="text-center">متعلق به</th>
+                    <th class="text-center">تاریخ ایجاد</th>
+                    <th class="text-center">تاریخ آخرین تغییر</th>
+                    <th class="text-center">ویرایش</th>
+                    <th class="text-center">حذف</th>
+                </tr>
+            </thead>
+
+            <tbody></tbody>
+
+        </table>
+    </div>
+    <div class="col-lg-1 col-xs-1"></div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var i = 1;
+            var table = $("#tableOfIpRanges").DataTable({
+
+                "pageLength": 60,
+
+                "oLanguage": {
+                    "sSearch": "جستجو  ",
+                    "sSearchPlaceholder": "یه چیزی بنویس ...",
+                    "sLengthMenu": "نمایش  _MENU_  رکورد در جدول",
+                    "decimal": "",
+                    "sEmptyTable": "هیچ داده قابل دسترسی در جدول یافت نشد",
+                    "sInfo": "نمایش _START_ تا _END_ از _TOTAL_ ورودی",
+                    "sInfoEmpty": "نمایش 0 تا 0 از صفر ورودی",
+                    "sInfoFiltered": "(فیلتر شده از _MAX_ کل ورودی ها)",
+                    "infoPostFix": "",
+                    "thousands": ",",
+                    "sLoadingRecords": "بارگذاری ...",
+                    "sProcessing": "پردازش ...",
+                    "sZeroRecords": "هیچ رکوردی که مطابقت داشته باشد یافت نشد",
+                    "oPaginate": {
+                        "sFirst": "اول",
+                        "sLast": "آخر",
+                        "sNext": "بعدی",
+                        "sPrevious": "قبلی"
+                    }
+                },
+
+                "sDom":
+                    "<'row'<'col-sm-6'f><'col-sm-6'l>>" +
+                    "<'row'<'col-sm-12'tr>>" +
+                    "<'row'<'col-sm-5'i><'col-sm-7'p>>",
+
+                "columnDefs": [
+                    { "className": "text-center", "targets": "_all" }
+                ],
+
+                ajax: {
+                    url: "/api/ipranges",
+                    dataSrc: ""
+                },
+
+                columns: [
+                    {
+                        data: "range", 
+                        render: function (data, type, ipRange) {
+                            return "<a href='/Ip/Edit/" + ipRange.id + "'>" + ipRange.range  + "</a>";
+                        }
+                    },
+                    {
+                        data: "setad.name"
+                    },
+                    {
+                        data: "dateCreated"
+                    },
+                    {
+                        data: "dateModified"
+                    },
+                    {
+                        orderable: false,
+                        data: "id",
+                        render: function (data, type, ipRange) {
+                            return "<a href='/Ip/Edit/" + ipRange.id + "'>" + "<span class='glyphicon glyphicon-edit' aria-hidden='true'></span>" + "</a>";
+                        }
+                    },
+                    {
+                        orderable: false,
+                        data: "id",
+                        render: function (data) {
+                            return "<button class='btn-link js-delete' data-ipRange-id=" + data + "> <span class='glyphicon glyphicon-remove'></span>" + "</button>";
+                        }
+                    }
+                ]
+            });
+
+            $("#tableOfIpRanges").on("click", ".js-delete", function () {
+                var button = $(this);
+                var dialog = bootbox.dialog({
+                    title: 'تائید',
+                    message: "آیا مطمئن هستید که می خواهید این ستاد حذف شود؟",
+                    buttons: {
+                        no: {
+                            label: "خیر",
+                            className: 'btn-default btn-left-bootbox',
+                            callback: function () {
+                                bootbox.hideAll();
+                            }
+                        },
+                        yes: {
+                            label: "حذف",
+                            className: 'btn-danger',
+                            callback: function () {
+                                $.ajax({
+                                        url: "/api/ipranges/" + button.attr("data-ipRange-id"),
+                                        method: "DELETE"
+                                    })
+                                    .done(function () {
+                                        var rowToBeDelete = button.parents("tr");
+                                        rowToBeDelete.fadeOut(200,
+                                            function () {
+                                                table.row(rowToBeDelete).remove().draw();
+                                            });
+                                    })
+                                    .fail(function () {
+                                        alert("Something failed");
+                                    });
+                            }
+                        }
+                    }
+                });
+                dialog.find('.btn-left-bootbox').css({ 'margin-left': '20px' });
+            });
+        });
+    </script>
+}

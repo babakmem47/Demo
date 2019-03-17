@@ -1132,18 +1132,18 @@
 			.colorblue {
 				color: blue;
 			}
-	// in the above link, both "Create" and "Ip" are red. "Create" is an action in "Ip" Controller:
+	// in the above link, both "Create" and "Ip" are red. "Create" is an action in "IpRange" Controller:
 	// Create Ip Controller:
-		-  in Solution Explorer: R-Click on Controllers -> Add -> Controllers... -> MVC5 Controller - Empty -> name it: IpController
-		- Alt+Enter on red View() in new controller to create corresponding view (Views/Ip/index.cshtml)
+		-  in Solution Explorer: R-Click on Controllers -> Add -> Controllers... -> MVC5 Controller - Empty -> name it: IpRangeController
+		- Alt+Enter on red View() in new controller to create corresponding view (Views/IpRange/index.cshtml)
 	
 	// Create "Create" action in Ip Controller:
-		- IpController -> mvcaction4 tab -> name it Create ->  Alt+Enter on red View() to create corresponding view (Views/Ip/Create.cshtml)
+		- IpRangeController -> mvcaction4 tab -> name it Create ->  Alt+Enter on red View() to create corresponding view (Views/IpRange/Create.cshtml)
 		- Change the title of new view:
 			<h2>ایجاد رنج آی پی جدید</h2>
 		
 		- Test the link (in Views/Setad/Create.cshtml). It has to work properly!
-32. Add a link below Ip Range combobox for new IpRange + Add IpController + Create Action 'Create' + Create views for Index and Create + Test link
+32. Add a link below Ip Range combobox for new IpRange + Add IpRangeController + Create Action 'Create' + Create views for Index and Create + Test link
 
 	// Add 2 column: DateCreated and DateModified to IpRange:
 	- Add 2 prop below to IpRange.cs:
@@ -1167,3 +1167,7 @@
 		SET  [DateCreated] = GETDATE();
 33. Add DateCreated and DateModified to IpRange and set DateCreated to today's datetime.
 
+	// Show existing Ip Ranges in Views/IpRange/index.cshtml:
+	- Copy /Setad/Index.cshtml code into Views/IpRange/index.cshtml
+	- Edit it and save a sample in index.cshtml with DataTable.txt
+34. Prepare Views/IpRange/index.cshtml.
