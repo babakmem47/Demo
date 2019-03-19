@@ -1171,3 +1171,44 @@
 	- Copy /Setad/Index.cshtml code into Views/IpRange/index.cshtml
 	- Edit it and save a sample in index.cshtml with DataTable.txt
 34. Prepare Views/IpRange/index.cshtml.
+
+	// Create api for getting list of ip ranges:
+	- Controllers Api folder -> R-Click -> Add Controller ... -> New Web Api 2 Controller - Empty
+	- Name it IpRangesController, open it:
+		public IEnumerable<IpRange> GetAll()
+		{
+			var ipRanges = _context.IpRanges
+				.Where(ip => !ip.IsUnused)
+				.Include(ip => ip.Setads)
+				.ToList();
+
+			return ipRanges;
+		}
+
+	- Add ctor to IpRange.cs(forget to initialize a list when we define it):
+		public IpRange()
+		{
+			Setads = new List<Setad>();
+		}
+
+	- Test it with Postman, Getting Error:
+	{
+		"message": "An error has occurred.",
+		"exceptionMessage": "The 'ObjectContent`1' type failed to serialize the response body for content type 'application/json; charset=utf-8'.",
+		"exceptionType": "System.InvalidOperationException",
+		"stackTrace": null,
+		"innerException": {
+		"message": "An error has occurred.",
+		"exceptionMessage": "Self referencing loop detected for property 'ipRange' with type 'Demo.Models.IpRange'. Path '[0].setads[0]'.",
+		"exceptionType": "Newtonsoft.Json.JsonSerializationException",
+		"stackTrace": "   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, 
+		JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)\r\n   at 
+		.
+		.
+	}
+
+	- Solution: Add the config below to WebApiConfig:
+	        GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+	- Test it and get the required result:
+
+35. Create IpRangesController + Action GetAll return all IpRanges with corresponding Setad.

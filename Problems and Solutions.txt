@@ -9,3 +9,27 @@
 
 ## Solution: Forget to Add Definition of IpRangeConfiguration.cs and SetadConfiguration.cs to onModelCreating 
 method of ADBC
+
+----------------------------------------------------------------------------------------------------------------------
+
+** Problem: get error in Postman: want to get the list of Ip ranges with associate setad
+{
+	"message": "An error has occurred.",
+	"exceptionMessage": "The 'ObjectContent`1' type failed to serialize the response body for content type 'application/json; charset=utf-8'.",
+	"exceptionType": "System.InvalidOperationException",
+	"stackTrace": null,
+	"innerException": {
+	"message": "An error has occurred.",
+	"exceptionMessage": "Self referencing loop detected for property 'ipRange' with type 'Demo.Models.IpRange'. Path '[0].setads[0]'.",
+	"exceptionType": "Newtonsoft.Json.JsonSerializationException",
+	"stackTrace": "   at Newtonsoft.Json.Serialization.JsonSerializerInternalWriter.CheckForCircularReference(JsonWriter writer, Object value, 
+	JsonProperty property, JsonContract contract, JsonContainerContract containerContract, JsonProperty containerProperty)\r\n   at 
+	.
+	.
+}
+
+## Solution: in WebApiConfig.cs add:
+	GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+
+----------------------------------------------------------------------------------------------------------------------
+

@@ -5,6 +5,11 @@ namespace Demo.Models
 {
     public class IpRange
     {
+        public IpRange()
+        {
+            Setads = new List<Setad>();
+        }
+
         public int Id { get; set; }
 
         public string Range { get; set; }
