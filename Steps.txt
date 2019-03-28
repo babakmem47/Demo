@@ -1208,7 +1208,33 @@
 	}
 
 	- Solution: Add the config below to WebApiConfig:
-	        GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+			GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
 	- Test it and get the required result:
 
 35. Create IpRangesController + Action GetAll return all IpRanges with corresponding Setad.
+	
+	// Put the result of api into Dto without AutoMapper
+	- Change the api like below:	
+		public IEnumerable<IpRangeDto> GetAll()
+		{
+			var ipRanges = _context.IpRanges
+				.Where(ip => !ip.IsUnused)
+				.Include(ip => ip.Setads)
+				.ToList();
+
+			return ipRanges.Select(x => new IpRangeDto
+			{
+				IprangeId = x.Id,
+				Range = x.Range,
+				Mask = x.Mask,
+				DateCreated = x.DateCreated,
+				DateModified = x.DateModified,
+				SetadDtos = x.Setads.Where(s => s.Id == x.Id)
+			});
+		}
+
+	- Add IpRangeId prop to IpRangeDto.cs 
+		public int IprangeId { get; set; }
+	- Change ICollectio prop from public ICollection<SetadDto> SetadDtos to:
+		public IEnumerable<Setad> SetadDtos { get; set; }
+36. return result of ip range and related setad without using AutoMapper

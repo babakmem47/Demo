@@ -1,4 +1,5 @@
-﻿using Demo.Models;
+﻿using Demo.Dtos;
+using Demo.Models;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
@@ -8,21 +9,29 @@ namespace Demo.Controllers.Api
 {
     public class IpRangesController : ApiController
     {
-        private ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
         public IpRangesController()
         {
             _context = new ApplicationDbContext();
         }
 
-        public IEnumerable<IpRange> GetAll()
+        public IEnumerable<IpRangeDto> GetAll()
         {
             var ipRanges = _context.IpRanges
                 .Where(ip => !ip.IsUnused)
                 .Include(ip => ip.Setads)
                 .ToList();
 
-            return ipRanges;
+            return ipRanges.Select(x => new IpRangeDto
+            {
+                IprangeId = x.Id,
+                Range = x.Range,
+                Mask = x.Mask,
+                DateCreated = x.DateCreated,
+                DateModified = x.DateModified,
+                SetadDtos = x.Setads.Where(s => s.Id == x.Id)
+            });
         }
     }
 }

@@ -1,21 +1,17 @@
-﻿using System;
+﻿using Demo.Models;
+using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 
 namespace Demo.Dtos
 {
     public class IpRangeDto
     {
-        public IpRangeDto()
-        {
-            SetadDtos = new Collection<SetadDto>();
-        }
-
+        public int IprangeId { get; set; }
         public string Range { get; set; }
         public string Mask { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
 
-        public ICollection<SetadDto> SetadDtos { get; set; }
+        public IEnumerable<Setad> SetadDtos { get; set; }
     }
 }
