@@ -1237,4 +1237,16 @@
 		public int IprangeId { get; set; }
 	- Change ICollectio prop from public ICollection<SetadDto> SetadDtos to:
 		public IEnumerable<Setad> SetadDtos { get; set; }
-36. return result of ip range and related setad without using AutoMapper
+36. Return result of ip range and related setad without using AutoMapper.
+
+	// Problem: the result is including too many info. We just need a related setad name for any ip range
+	- Delete or comment out SetadDtos prop in IpRangeDto
+
+	- Add a new prop in IpRangeDto and name it RelatedSetad
+		public string RelatedSetad { get; set; }
+
+
+	- Replace below code line instead of SetadDtos initialization in Api:
+		RelatedSetad = _context.Setads.SingleOrDefault(s => s.Id == x.Id).Name
+
+37. make the result only return name of related setad for each ip range.

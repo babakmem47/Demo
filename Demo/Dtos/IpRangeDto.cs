@@ -12,6 +12,8 @@ namespace Demo.Dtos
         public DateTime DateCreated { get; set; }
         public DateTime? DateModified { get; set; }
 
-        public IEnumerable<Setad> SetadDtos { get; set; }
+        //public IEnumerable<Setad> SetadDtos { get; set; }
+
+        public string RelatedSetad { get; set; }
     }
 }

@@ -20,8 +20,9 @@ namespace Demo.Controllers.Api
         {
             var ipRanges = _context.IpRanges
                 .Where(ip => !ip.IsUnused)
-                .Include(ip => ip.Setads)
+                //.Include(ip => ip.Setads)
                 .ToList();
+
 
             return ipRanges.Select(x => new IpRangeDto
             {
@@ -30,7 +31,7 @@ namespace Demo.Controllers.Api
                 Mask = x.Mask,
                 DateCreated = x.DateCreated,
                 DateModified = x.DateModified,
-                SetadDtos = x.Setads.Where(s => s.Id == x.Id)
+                RelatedSetad = _context.Setads.SingleOrDefault(s => s.Id == x.Id).Name
             });
         }
     }
