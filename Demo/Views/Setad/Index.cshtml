@@ -101,7 +101,10 @@
                         }
                     },
                     {
-                        data: "ipRange.range"
+                        data: "ipRange",
+                        render: function (data) {
+                            return data.mask + "/ " + data.range;
+                        }
                     },
                     {
                         data: "shakhes"

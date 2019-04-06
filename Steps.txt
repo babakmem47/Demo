@@ -1250,3 +1250,21 @@
 		RelatedSetad = _context.Setads.SingleOrDefault(s => s.Id == x.Id).Name
 
 37. make the result only return name of related setad for each ip range.
+
+	- Create a new link "رنج های آی پی موجود" in navigation bar and move "تعریف رنج جدید" up:
+		<ul class="dropdown-menu">
+			<li><a href="#">رنج های آی پی موجود</a></li>
+			<li><a href="#">تعریف رنج جدید</a></li>
+			<li><a href="#">تخصیص آی پی</a></li>
+			<li><a href="#">جستجو</a></li>
+		</ul>
+
+	// Make ipRange column show "/ " + mask in front of range(before it can only shows range)
+		{
+			data: "ipRange",
+			render: function (data) {
+				return data.mask + "/ " + data.range;
+			}
+		},
+
+38. Add 2 links in NavBar menu for Showing and Creating Ip range + Display /mask in front of range in DataTable.
