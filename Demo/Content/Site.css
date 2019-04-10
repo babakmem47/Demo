@@ -164,6 +164,10 @@ select.form-control {
     color: blue;
 }
 
+.textalignleft {
+    text-align: left;
+}
+
 /* DataTable Overrides*/
 div.dataTables_wrapper div.dataTables_filter input {
     font-family: IranSansWeb;

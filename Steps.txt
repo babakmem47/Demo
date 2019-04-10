@@ -1268,3 +1268,18 @@
 		},
 
 38. Add 2 links in NavBar menu for Showing and Creating Ip range + Display /mask in front of range in DataTable.
+
+	// Make ip range column in the DataTable left align
+	- assign a class name "textalignleft" to the second column of DataTable in this way:
+	- Add a line in columnDefs to assign a class name "textalignleft" to the iprange column(second column):
+		"columnDefs": [
+			{ "className": "textalignleft", "targets": [ 1 ] },
+			{ "className": "text-center", "targets": "_all" }
+		]
+
+	- Add a class in Site.css:
+		.textalignleft {
+			text-align: left;
+		}
+
+39. Make ip range column in the DataTable left align
